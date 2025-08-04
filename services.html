@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services - TintPro</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#C75803',
+                'primary-dark': '#A04702',
+            }
+        }
+    }
+}
+</script>
+<style>
+    /* Page entry animation */
+    .main-content-enter {
+        animation: slideInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes slideInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-up.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-left.animate {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-right.animate {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .scale-in {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.6s ease-out;
+    }
+
+    .scale-in.animate {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Stagger animation delays */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+    .delay-500 { transition-delay: 0.5s; }
+    .delay-600 { transition-delay: 0.6s; }
+    .delay-700 { transition-delay: 0.7s; }
+    .delay-800 { transition-delay: 0.8s; }
+
+    /* Hero text animation */
+    .hero-text {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: heroTextReveal 1.5s ease-out forwards;
+    }
+
+    @keyframes heroTextReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-text-delay-1 { animation-delay: 0.3s; }
+    .hero-text-delay-2 { animation-delay: 0.6s; }
+    .hero-text-delay-3 { animation-delay: 0.9s; }
+
+    /* Hover animations */
+    .hover-lift {
+        transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(199, 88, 3, 0.3);
+    }
+
+    /* Loading animation for images */
+    .image-loading {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .image-loaded {
+        opacity: 1;
+    }
+</style>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Main Website Content -->
+<div id="main-content" class="main-content-enter">
+
+<!-- Navigation -->
+<nav class="bg-black bg-opacity-90 backdrop-blur-sm shadow-lg fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <a href="./index.html"><img style="width: 120px;" src="./images/logo.png" alt="" class="image-loading"></a>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center h-full">
+            <div class="ml-10 flex items-center space-x-4">
+                <a href="index.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                <a href="services.html" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                <a href="about.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                <a href="gallery.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                <a href="contact.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <a href="contact.html" class="bg-primary hover:bg-primary-dark text-white block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover-lift">Get Quote</a>
+            </div>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center h-full">
+            <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:text-white"onclick="toggleMobileMenu()">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Mobile menu -->
+<div id="mobile-menu" class="md:hidden hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-700">
+        <a href="index.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="services.html" class="text-primary block px-3 py-2 rounded-md text-base font-medium">Services</a>
+        <a href="about.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+        <a href="gallery.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+        <a href="contact.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+    </div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="pt-16 pb-16  bg-gray-800">
+<div class="max-w-7xl pt-16 mx-auto px-4 text-center">
+    <h1 class="text-5xl font-bold mb-6 hero-text">Our Services</h1>
+    <p class="text-xl text-gray-300 max-w-3xl mx-auto hero-text hero-text-delay-1">Professional window tinting and auto glass services with premium materials, expert installation, and comprehensive warranties.</p>
+</div>
+</section>
+
+<!-- Window Tinting Section -->
+<section class="py-16 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in-left">
+            <h2 class="text-4xl font-bold mb-6 text-primary">Window Tinting</h2>
+            <p class="text-lg text-gray-300 mb-6">Protect your vehicle and property with our premium window tinting services. We offer a variety of tint shades and materials to meet your needs and local regulations.</p>
+            <div class="space-y-4">
+                <div class="bg-gray-800 p-4 rounded-lg scale-in delay-100 ">
+                    <h3 class="text-xl font-semibold mb-2">Automotive Tinting</h3>
+                    <p class="text-gray-400">Professional car window tinting with UV protection, heat reduction, and privacy enhancement.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg scale-in delay-200 ">
+                    <h3 class="text-xl font-semibold mb-2">Residential Tinting</h3>
+                    <p class="text-gray-400">Home window tinting for energy efficiency, privacy, and UV protection.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg scale-in delay-300 ">
+                    <h3 class="text-xl font-semibold mb-2">Commercial Tinting</h3>
+                    <p class="text-gray-400">Office and commercial building window tinting for comfort and energy savings.</p>
+                </div>
+            </div>
+        </div>
+        <div class="fade-in-right">
+            <img  src="./images/placeholder.png" alt="Window Tinting Service" class="rounded-lg shadow-lg image-loading ">
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Auto Glass Repair Section -->
+<section class="py-16 bg-gray-800">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 fade-in-left">
+            <img src="./images/placeholder.png" alt="Auto Glass Repair" class="rounded-lg shadow-lg image-loading">
+        </div>
+        <div class="order-1 lg:order-2 fade-in-right">
+            <h2 class="text-4xl font-bold mb-6 text-primary">Auto Glass Repair</h2>
+            <p class="text-lg text-gray-300 mb-6">Don't let a small chip become a big problem. Our expert technicians can repair most windshield chips and small cracks quickly and effectively.</p>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3 scale-in delay-100">
+                    <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Chip Repair</h3>
+                        <p class="text-gray-400">Quick repair of small chips to prevent spreading</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3 scale-in delay-200">
+                    <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Crack Repair</h3>
+                        <p class="text-gray-400">Professional repair of small to medium cracks</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3 scale-in delay-300">
+                    <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Same-Day Service</h3>
+                        <p class="text-gray-400">Most repairs completed within 30 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Glass Replacement Section -->
+<section class="py-16 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in-left">
+            <h2 class="text-4xl font-bold mb-6 text-primary">Glass Replacement</h2>
+            <p class="text-lg text-gray-300 mb-6">When repair isn't possible, we provide complete windshield and window replacement services using high-quality OEM and aftermarket glass.</p>
+            <div class="bg-gray-800 p-6 rounded-lg mb-6 scale-in delay-100">
+                <h3 class="text-2xl font-semibold mb-4">OEM vs. Aftermarket Glass</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="border border-gray-600 p-4 rounded hover-lift">
+                        <h4 class="font-semibold text-primary mb-2">OEM Glass</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Original manufacturer quality</li>
+                            <li>• Perfect fit guaranteed</li>
+                            <li>• Maintains vehicle value</li>
+                            <li>• Premium pricing</li>
+                        </ul>
+                    </div>
+                    <div class="border border-gray-600 p-4 rounded hover-lift">
+                        <h4 class="font-semibold text-primary mb-2">Aftermarket Glass</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• High-quality alternative</li>
+                            <li>• Cost-effective option</li>
+                            <li>• Meets safety standards</li>
+                            <li>• Same warranty coverage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fade-in-right">
+            <img src="./images/placeholder.png" alt="Glass Replacement" class="rounded-lg shadow-lg image-loading">
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Mobile Services Section -->
+<section class="py-16 bg-gray-800">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 fade-in-up">
+        <h2 class="text-4xl font-bold mb-6 text-primary">Mobile Services</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">We bring our services to you! Our mobile units are equipped with everything needed to provide professional service at your location.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 p-6 rounded-lg text-center scale-in delay-100 ">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Your Location</h3>
+            <p class="text-gray-400">Home, office, or anywhere convenient for you</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg text-center scale-in delay-200 ">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Flexible Scheduling</h3>
+            <p class="text-gray-400">Early morning, evening, and weekend appointments available</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg text-center scale-in delay-300 ">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Full Equipment</h3>
+            <p class="text-gray-400">Professional tools and materials for complete service</p>
+        </div>
+    </div>
+    <div class="mt-12 bg-gray-900 p-8 rounded-lg fade-in-up delay-400">
+        <h3 class="text-2xl font-semibold mb-4">Service Areas</h3>
+        <p class="text-gray-300 mb-4">We provide mobile services within a 50-mile radius of our main location, including:</p>
+        <div class="grid md:grid-cols-3 gap-4 text-gray-400">
+            <ul class="space-y-2">
+                <li>• Downtown Area</li>
+                <li>• North Suburbs</li>
+                <li>• East Side</li>
+            </ul>
+            <ul class="space-y-2">
+                <li>• West End</li>
+                <li>• South District</li>
+                <li>• Industrial Zone</li>
+            </ul>
+            <ul class="space-y-2">
+                <li>• Airport Area</li>
+                <li>• University District</li>
+                <li>• Surrounding Counties</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-primary">
+<div class="max-w-4xl mx-auto px-4 text-center fade-in-up">
+    <h2 class="text-4xl font-bold mb-6 text-white">Ready to Get Started?</h2>
+    <p class="text-xl mb-8 text-white opacity-90">Contact us today for a free quote and professional service you can trust.</p>
+    <a href="contact.html" class="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition duration-300 hover-lift">Get Free Quote</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 py-12">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8">
+        <div class="fade-in-up">
+            <img style="width: 120px;" class="mb-4 image-loading" src="./images/logo.png" alt="">
+            <p class="text-gray-400">Your trusted partner for professional window tinting and auto glass services.</p>
+        </div>
+        <div class="fade-in-up delay-100">
+            <h4 class="text-lg font-semibold mb-4">Services</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="services.html" class="hover:text-primary">Window Tinting</a></li>
+                <li><a href="services.html" class="hover:text-primary">Windshield Replacement</a></li>
+                <li><a href="services.html" class="hover:text-primary">Chip Repair</a></li>
+                <li><a href="services.html" class="hover:text-primary">Mobile Service</a></li>
+            </ul>
+        </div>
+        <div class="fade-in-up delay-200">
+            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                <li><a href="gallery.html" class="hover:text-primary">Gallery</a></li>
+                <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+            </ul>
+        </div>
+        <div class="fade-in-up delay-300">
+            <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li>(555) 123-4567</li>
+                <li>info@tintpro.com</li>
+                <li>123 Main St, City, ST 12345</li>
+            </ul>
+        </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 fade-in-up">
+        <p>&copy; 2024 GLASS <span class="text-primary font-semibold">& TINT</span>. All rights reserved.</p>
+    </div>
+</div>
+</footer>
+
+</div>
+
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    // Scroll animations
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Image loading animations
+    function initImageLoading() {
+        const images = document.querySelectorAll('.image-loading');
+        
+        images.forEach(img => {
+            if (img.complete) {
+                img.classList.add('image-loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('image-loaded');
+                });
+            }
+        });
+    }
+
+    // Initialize animations on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        initScrollAnimations();
+        initImageLoading();
+    });
+</script>
+</body>
+</html>

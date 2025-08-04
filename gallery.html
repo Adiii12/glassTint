@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - TintPro</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#C75803',
+                'primary-dark': '#A04702',
+            }
+        }
+    }
+}
+</script>
+<style>
+    /* Page entry animation */
+    .main-content-enter {
+        animation: slideInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes slideInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-up.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-left.animate {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .fade-in-right.animate {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .scale-in {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.6s ease-out;
+    }
+
+    .scale-in.animate {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Stagger animation delays */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+    .delay-500 { transition-delay: 0.5s; }
+    .delay-600 { transition-delay: 0.6s; }
+    .delay-700 { transition-delay: 0.7s; }
+    .delay-800 { transition-delay: 0.8s; }
+
+    /* Hero text animation */
+    .hero-text {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: heroTextReveal 1.5s ease-out forwards;
+    }
+
+    @keyframes heroTextReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-text-delay-1 { animation-delay: 0.3s; }
+    .hero-text-delay-2 { animation-delay: 0.6s; }
+    .hero-text-delay-3 { animation-delay: 0.9s; }
+
+    /* Hover animations */
+    .hover-lift {
+        transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(199, 88, 3, 0.3);
+    }
+
+    /* Loading animation for images */
+    .image-loading {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .image-loaded {
+        opacity: 1;
+    }
+</style>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Main Website Content -->
+<div id="main-content" class="main-content-enter">
+
+<!-- Navigation -->
+<nav class="bg-black bg-opacity-90 backdrop-blur-sm shadow-lg fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <a href="./index.html"><img style="width: 120px;" src="./images/logo.png" alt="" class="image-loading"></a>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center h-full">
+            <div class="ml-10 flex items-center space-x-4">
+                <a href="index.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                <a href="services.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                <a href="about.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                <a href="gallery.html" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                <a href="contact.html" class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <a href="contact.html" class="bg-primary hover:bg-primary-dark text-white block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover-lift">Get Quote</a>
+            </div>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center h-full">
+            <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:text-white"onclick="toggleMobileMenu()">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Mobile menu -->
+<div id="mobile-menu" class="md:hidden hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-700">
+        <a href="index.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="services.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Services</a>
+        <a href="about.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+        <a href="gallery.html" class="text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+        <a href="contact.html" class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+    </div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="pt-16 pb-16 bg-gray-800">
+<div class="max-w-7xl pt-16 mx-auto px-4 text-center">
+    <h1 class="text-5xl font-bold mb-6 hero-text">Our Work Gallery</h1>
+    <p class="text-xl text-gray-300 max-w-3xl mx-auto hero-text hero-text-delay-1">See the quality and precision that goes into every installation. Real results from real customers.</p>
+</div>
+</section>
+
+<!-- Filter Buttons -->
+<section class="py-8 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-4 fade-in-up">
+        <button onclick="filterGallery('all')" class="filter-btn bg-primary text-white px-6 py-2 rounded-lg font-semibold transition duration-300 hover-lift">All Work</button>
+        <button onclick="filterGallery('tinting')" class="filter-btn bg-gray-700 hover:bg-primary text-white px-6 py-2 rounded-lg font-semibold transition duration-300 hover-lift">Tinting</button>
+        <button onclick="filterGallery('repair')" class="filter-btn bg-gray-700 hover:bg-primary text-white px-6 py-2 rounded-lg font-semibold transition duration-300 hover-lift">Repair</button>
+        <button onclick="filterGallery('residential')" class="filter-btn bg-gray-700 hover:bg-primary text-white px-6 py-2 rounded-lg font-semibold transition duration-300 hover-lift">Residential</button>
+        <button onclick="filterGallery('commercial')" class="filter-btn bg-gray-700 hover:bg-primary text-white px-6 py-2 rounded-lg font-semibold transition duration-300 hover-lift">Commercial</button>
+    </div>
+</div>
+</section>
+
+<!-- Before and After Section -->
+<section class="py-16 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-primary fade-in-up">Before & After</h2>
+    <div class="grid lg:grid-cols-2 gap-12">
+        <div class="gallery-item fade-in-left" data-category="repair">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4">Windshield Crack Repair</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-400 mb-2">BEFORE</p>
+                        <img src="./images/placeholder.png" alt="Before Repair" class="rounded-lg w-full h-48 object-cover image-loading">
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 mb-2">AFTER</p>
+                        <img src="./images/placeholder.png" alt="After Repair" class="rounded-lg w-full h-48 object-cover image-loading">
+                    </div>
+                </div>
+                <p class="text-gray-300 mt-4">12-inch crack completely repaired, saving the customer hundreds compared to replacement.</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in-right" data-category="tinting">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4">Luxury SUV Tinting</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-400 mb-2">BEFORE</p>
+                        <img src="./images/placeholder.png" alt="Before Tinting" class="rounded-lg w-full h-48 object-cover image-loading">
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 mb-2">AFTER</p>
+                        <img src="./images/placeholder.png" alt="After Tinting" class="rounded-lg w-full h-48 object-cover image-loading">
+                    </div>
+                </div>
+                <p class="text-gray-300 mt-4">Ceramic tint installation providing 99% UV protection and superior heat rejection.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Work in Progress Section -->
+<section class="py-16 bg-gray-800">
+<div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-primary fade-in-up">Work in Progress</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="gallery-item scale-in delay-100" data-category="tinting">
+            <div class="bg-gray-900 p-4 rounded-lg ">
+                <img src="./images/placeholder.png" alt="Tint Installation" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Precision Installation</h3>
+                <p class="text-gray-400 text-sm">Our technicians use specialized tools for perfect alignment and bubble-free installation.</p>
+            </div>
+        </div>
+        <div class="gallery-item scale-in delay-200" data-category="repair">
+            <div class="bg-gray-900 p-4 rounded-lg ">
+                <img src="./images/placeholder.png" alt="Chip Repair Process" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Chip Repair Process</h3>
+                <p class="text-gray-400 text-sm">Advanced resin injection technique that restores structural integrity and clarity.</p>
+            </div>
+        </div>
+        <div class="gallery-item scale-in delay-300" data-category="tinting">
+            <div class="bg-gray-900 p-4 rounded-lg ">
+                <img src="./images/placeholder.png" alt="Mobile Service" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Mobile Service</h3>
+                <p class="text-gray-400 text-sm">Fully equipped mobile units bring professional service directly to your location.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Vehicle Types Section -->
+<section class="py-16 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-primary fade-in-up">Vehicle Types We Service</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="gallery-item scale-in delay-100" data-category="tinting">
+            <div class="bg-gray-800 p-4 rounded-lg text-center ">
+                <img src="./images/placeholder.png" alt="Sedans" class="rounded-lg w-full h-40 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Sedans</h3>
+                <p class="text-gray-400 text-sm">Professional tinting for all sedan models</p>
+            </div>
+        </div>
+        <div class="gallery-item scale-in delay-200" data-category="tinting">
+            <div class="bg-gray-800 p-4 rounded-lg text-center ">
+                <img src="./images/placeholder.png" alt="SUVs" class="rounded-lg w-full h-40 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">SUVs</h3>
+                <p class="text-gray-400 text-sm">Complete SUV tinting and glass services</p>
+            </div>
+        </div>
+        <div class="gallery-item scale-in delay-300" data-category="tinting">
+            <div class="bg-gray-800 p-4 rounded-lg text-center ">
+                <img src="./images/placeholder.png" alt="Trucks" class="rounded-lg w-full h-40 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Trucks</h3>
+                <p class="text-gray-400 text-sm">Heavy-duty tinting for work and personal trucks</p>
+            </div>
+        </div>
+        <div class="gallery-item scale-in delay-400" data-category="commercial">
+            <div class="bg-gray-800 p-4 rounded-lg text-center ">
+                <img src="./images/placeholder.png" alt="Commercial Vehicles" class="rounded-lg w-full h-40 object-cover mb-4 image-loading">
+                <h3 class="text-lg font-semibold mb-2">Commercial</h3>
+                <p class="text-gray-400 text-sm">Fleet services for commercial vehicles</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Residential & Commercial Section -->
+<section class="py-16 bg-gray-800">
+<div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-primary fade-in-up">Residential & Commercial Projects</h2>
+    <div class="grid lg:grid-cols-2 gap-12">
+        <div class="gallery-item fade-in-left" data-category="residential">
+            <div class="bg-gray-900 p-6 rounded-lg ">
+                <img src="./images/placeholder.png" alt="Residential Tinting" class="rounded-lg w-full h-64 object-cover mb-4 image-loading">
+                <h3 class="text-xl font-semibold mb-2">Residential Window Tinting</h3>
+                <p class="text-gray-300">Energy-efficient home window tinting that reduces cooling costs by up to 30% while providing privacy and UV protection.</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in-right" data-category="commercial">
+            <div class="bg-gray-900 p-6 rounded-lg ">
+                <img src="./images/placeholder.png" alt="Commercial Tinting" class="rounded-lg w-full h-64 object-cover mb-4 image-loading">
+                <h3 class="text-xl font-semibold mb-2">Commercial Building Tinting</h3>
+                <p class="text-gray-300">Professional office building tinting that improves employee comfort, reduces glare, and lowers energy costs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Customer Testimonials with Photos -->
+<section class="py-16 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-primary fade-in-up">Happy Customers</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-800 p-6 rounded-lg scale-in delay-100 ">
+            <img src="./images/placeholder.png" alt="Happy Customer" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+            <div class="flex items-center mb-4">
+                <div class="flex text-primary">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+            </div>
+            <p class="text-gray-300 mb-4">"Amazing work on my BMW! The ceramic tint looks perfect and the heat reduction is incredible."</p>
+            <p class="text-primary font-semibold">- Jennifer K.</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg scale-in delay-200 ">
+            <img src="./images/placeholder.png" alt="Satisfied Customer" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+            <div class="flex items-center mb-4">
+                <div class="flex text-primary">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+            </div>
+            <p class="text-gray-300 mb-4">"They fixed my windshield crack so well, you can't even tell it was ever damaged. Saved me $400!"</p>
+            <p class="text-primary font-semibold">- Robert M.</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg scale-in delay-300 ">
+            <img src="./images/placeholder.png" alt="Commercial Customer" class="rounded-lg w-full h-48 object-cover mb-4 image-loading">
+            <div class="flex items-center mb-4">
+                <div class="flex text-primary">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+            </div>
+            <p class="text-gray-300 mb-4">"Professional commercial tinting for our office building. Reduced our cooling costs significantly and improved employee comfort."</p>
+            <p class="text-primary font-semibold">- Amanda T., Office Manager</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-primary">
+<div class="max-w-4xl mx-auto px-4 text-center fade-in-up">
+    <h2 class="text-4xl font-bold mb-6 text-white">Ready to See Your Results?</h2>
+    <p class="text-xl mb-8 text-white opacity-90">Join our gallery of satisfied customers with professional service you can trust.</p>
+    <a href="contact.html" class="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition duration-300 hover-lift">Get Free Quote</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 py-12">
+<div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8">
+        <div class="fade-in-up">
+            <img style="width: 120px;" class="mb-4 image-loading" src="./images/logo.png" alt="">
+            <p class="text-gray-400">Your trusted partner for professional window tinting and auto glass services.</p>
+        </div>
+        <div class="fade-in-up delay-100">
+            <h4 class="text-lg font-semibold mb-4">Services</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="services.html" class="hover:text-primary">Window Tinting</a></li>
+                <li><a href="services.html" class="hover:text-primary">Windshield Replacement</a></li>
+                <li><a href="services.html" class="hover:text-primary">Chip Repair</a></li>
+                <li><a href="services.html" class="hover:text-primary">Mobile Service</a></li>
+            </ul>
+        </div>
+        <div class="fade-in-up delay-200">
+            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                <li><a href="gallery.html" class="hover:text-primary">Gallery</a></li>
+                <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+            </ul>
+        </div>
+        <div class="fade-in-up delay-300">
+            <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li>(555) 123-4567</li>
+                <li>info@tintpro.com</li>
+                <li>123 Main St, City, ST 12345</li>
+            </ul>
+        </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 fade-in-up">
+        <p>&copy; 2024 GLASS <span class="text-primary font-semibold">& TINT</span>. All rights reserved.</p>
+    </div>
+</div>
+</footer>
+
+</div>
+
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    function filterGallery(category) {
+        const items = document.querySelectorAll('.gallery-item');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        // Update button styles
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-primary');
+            btn.classList.add('bg-gray-700');
+        });
+        event.target.classList.remove('bg-gray-700');
+        event.target.classList.add('bg-primary');
+
+        // Filter items
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Scroll animations
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Image loading animations
+    function initImageLoading() {
+        const images = document.querySelectorAll('.image-loading');
+        
+        images.forEach(img => {
+            if (img.complete) {
+                img.classList.add('image-loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('image-loaded');
+                });
+            }
+        });
+    }
+
+    // Initialize animations on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        initScrollAnimations();
+        initImageLoading();
+    });
+</script>
+</body>
+</html>
