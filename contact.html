@@ -195,6 +195,13 @@
             opacity: 1;
             visibility: visible;
         }
+        .step-completed {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .step-current {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -266,30 +273,12 @@
         <section class="py-16 bg-gray-900">
             <div class="max-w-4xl mx-auto px-4">
                 <div class="mb-12 fade-in-up">
-                    <div class="flex items-center justify-center space-x-4 mb-4">
-                        <div id="step-indicator-1"
-                            class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">
-                            1</div>
-                        <div class="w-16 h-1 bg-gray-600" id="progress-1"></div>
-                        <div id="step-indicator-2"
-                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                            2</div>
-                        <div class="w-16 h-1 bg-gray-600" id="progress-2"></div>
-                        <div id="step-indicator-3"
-                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                            3</div>
-                        <div class="w-16 h-1 bg-gray-600" id="progress-3"></div>
-                        <div id="step-indicator-4"
-                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                            4</div>
-                        <div class="w-16 h-1 bg-gray-600" id="progress-4"></div>
-                        <div id="step-indicator-5"
-                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                            5</div>
+                    <div id="progress-bar-container" class="flex items-center justify-center space-x-4 mb-4">
+                         Progress bar will be dynamically generated 
                     </div>
                 </div>
 
-                <div id="step-service-type" class="bg-gray-800 p-8 rounded-lg">
+                <div id="step-service-type" class="bg-gray-800 p-8 rounded-lg step-current">
                     <div class="text-center mb-8">
                         <h2 class="text-3xl font-bold mb-4">What service do you need?</h2>
                         <p class="text-gray-300">Select the type of service you're interested in.</p>
@@ -383,7 +372,7 @@
                         </div>
                     </div>
                     <div class="flex justify-between mt-8">
-                        <button onclick="prevStep(1)"
+                        <button onclick="scrollToStep(1)"
                             class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
                             Back</button>
                         <button onclick="nextStep(3)"
@@ -391,6 +380,7 @@
                             Continue</button>
                     </div>
                 </div>
+
                 <div id="step-glass-selection" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
                     <div class="text-center mb-8">
                         <h2 class="text-3xl font-bold mb-4">What glass needs repair or replacement?</h2>
@@ -441,7 +431,7 @@
                     </div>
 
                     <div class="flex justify-between mt-8">
-                        <button onclick="prevStep(2)"
+                        <button onclick="scrollToStep(2)"
                             class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
                             Back</button>
                         <button onclick="nextStep(4)"
@@ -504,7 +494,7 @@
                     </div>
 
                     <div class="flex justify-between mt-8">
-                        <button onclick="prevStep(2)"
+                        <button onclick="scrollToStep(2)"
                             class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
                             Back</button>
                         <button onclick="nextStep(4)"
@@ -554,10 +544,49 @@
                     </div>
 
                     <div class="flex justify-between mt-8">
-                        <button onclick="prevStep(3)"
+                        <button onclick="scrollToStep(3)"
                             class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
                             Back</button>
                         <button onclick="nextStep(5)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+
+                <div id="step-tint-removal" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">Does your car already have tint that needs to be removed?</h2>
+                        <p class="text-gray-300">Let us know if we need to remove existing tint before applying the new film.</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
+                        <div class="tint-removal-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-removal="yes">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Yes</h3>
+                            <p class="text-sm text-gray-400">My car has existing tint that needs removal</p>
+                        </div>
+                        <div class="tint-removal-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-removal="no">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">No</h3>
+                            <p class="text-sm text-gray-400">No existing tint to remove</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="scrollToStep(4)"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                            Back</button>
+                        <button onclick="nextStep(6)"
                             class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
                             Continue</button>
                     </div>
@@ -629,10 +658,10 @@
             </div>
         </section>
 
-        <section class="py-16 ">
+        <section class="py-16 bg-gray-800">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-100">
+                    <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-100">
                         <h3 class="text-2xl font-bold mb-6 text-primary">Contact Information</h3>
                         <div class="space-y-4">
                             <div class="flex items-center space-x-4">
@@ -681,7 +710,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-200">
+                    <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-200">
                         <h3 class="text-2xl font-bold mb-6 text-primary">Business Hours</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between"><span class="font-medium">Monday - Friday</span><span
@@ -697,7 +726,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-300">
+                    <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-300">
                         <h3 class="text-2xl font-bold mb-6 text-primary">Follow Us</h3>
                         <div class="flex space-x-4">
                             <a href="#"
@@ -782,11 +811,13 @@
 
     <script>
         let currentStep = 1;
+        let maxStepReached = 1; // Track the highest step the user has reached
         let formData = {}; // Stores all collected form data
         let selectedServiceType = ''; // 'auto-glass' or 'window-tint'
         let selectedGlassType = '';
         let selectedTintType = '';
         let selectedFilmType = '';
+        let selectedTintRemoval = '';
         let selectedGlassDetails = {};
         let selectedTintDetails = {};
 
@@ -853,6 +884,31 @@
             menu.classList.toggle('hidden');
         }
 
+        function generateProgressBar() {
+            const container = document.getElementById('progress-bar-container');
+            const totalSteps = selectedServiceType === 'window-tint' ? 6 : 5;
+            
+            let progressHTML = '';
+            
+            for (let i = 1; i <= totalSteps; i++) {
+                const isActive = i <= currentStep;
+                const stepClass = isActive ? 'bg-primary' : 'bg-gray-600';
+                
+                progressHTML += `
+                    <div id="step-indicator-${i}" class="w-8 h-8 rounded-full ${stepClass} text-white flex items-center justify-center text-sm font-bold">
+                        ${i}
+                    </div>
+                `;
+                
+                if (i < totalSteps) {
+                    const progressClass = i < currentStep ? 'bg-primary' : 'bg-gray-600';
+                    progressHTML += `<div class="w-16 h-1 ${progressClass}" id="progress-${i}"></div>`;
+                }
+            }
+            
+            container.innerHTML = progressHTML;
+        }
+
         function getStepElement(stepNum) {
             switch (stepNum) {
                 case 1: return document.getElementById('step-service-type');
@@ -869,8 +925,37 @@
                     } else {
                         return document.getElementById('step-contact-info');
                     }
-                case 5: return document.getElementById('step-contact-info');
+                case 5: 
+                    if (selectedServiceType === 'window-tint') {
+                        return document.getElementById('step-tint-removal');
+                    } else {
+                        return null;
+                    }
+                case 6: return document.getElementById('step-contact-info');
                 default: return null;
+            }
+        }
+
+        function scrollToStep(stepNum) {
+            // Mark all steps as completed except the target step
+            for (let i = 1; i <= maxStepReached; i++) {
+                const stepElement = getStepElement(i);
+                if (stepElement) {
+                    if (i === stepNum) {
+                        stepElement.classList.remove('step-completed');
+                        stepElement.classList.add('step-current');
+                    } else {
+                        stepElement.classList.add('step-completed');
+                        stepElement.classList.remove('step-current');
+                    }
+                }
+            }
+            
+            const stepElement = getStepElement(stepNum);
+            if (stepElement) {
+                currentStep = stepNum;
+                generateProgressBar();
+                stepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
@@ -879,72 +964,64 @@
                 return;
             }
 
+            // Mark current step as completed
             const currentStepElement = getStepElement(currentStep);
+            if (currentStepElement) {
+                currentStepElement.classList.add('step-completed');
+                currentStepElement.classList.remove('step-current');
+            }
+
             const nextStepElement = getStepElement(step);
-
-            if (currentStepElement) {
-                currentStepElement.classList.add('hidden');
-            }
             if (nextStepElement) {
+                // Show the next step
                 nextStepElement.classList.remove('hidden');
+                nextStepElement.classList.add('step-current');
+                nextStepElement.classList.remove('step-completed');
+                
+                // Update maxStepReached if we're going to a new step
+                if (step > maxStepReached) {
+                    maxStepReached = step;
+                }
+                
+                currentStep = step;
+                generateProgressBar();
                 nextStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Show appropriate fields in contact form
+                if ((selectedServiceType === 'auto-glass' && step === 4) || 
+                    (selectedServiceType === 'window-tint' && step === 6)) {
+                    showContactFields();
+                }
             }
-
-            updateProgress(currentStep, step);
-            currentStep = step;
-
-            // Show appropriate fields in contact form
-            if (step === 4 || step === 5) {
-                showContactFields();
-            }
-        }
-
-        function prevStep(step) {
-            const currentStepElement = getStepElement(currentStep);
-            const prevStepElement = getStepElement(step);
-
-            if (currentStepElement) {
-                currentStepElement.classList.add('hidden');
-            }
-            if (prevStepElement) {
-                prevStepElement.classList.remove('hidden');
-                prevStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            updateProgress(currentStep, step);
-            currentStep = step;
         }
 
         function goBackFromContact() {
+            // Mark current contact step as completed
+            const currentStepElement = getStepElement(currentStep);
+            if (currentStepElement) {
+                currentStepElement.classList.add('step-completed');
+                currentStepElement.classList.remove('step-current');
+            }
+            
             if (selectedServiceType === 'window-tint') {
-                prevStep(4); // Go back to film selection
-            } else {
-                prevStep(3); // Go back to glass selection
-            }
-        }
-
-        function updateProgress(from, to) {
-            // Update step indicators
-            for (let i = 1; i <= 5; i++) {
-                const indicator = document.getElementById(`step-indicator-${i}`);
-                if (i <= to) {
-                    indicator.classList.remove('bg-gray-600');
-                    indicator.classList.add('bg-primary');
-                } else {
-                    indicator.classList.remove('bg-primary');
-                    indicator.classList.add('bg-gray-600');
+                // Show tint removal step
+                const tintRemovalStep = getStepElement(5);
+                if (tintRemovalStep) {
+                    tintRemovalStep.classList.remove('step-completed');
+                    tintRemovalStep.classList.add('step-current');
+                    currentStep = 5;
+                    generateProgressBar();
+                    tintRemovalStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            }
-
-            // Update progress bars
-            for (let i = 1; i <= 4; i++) {
-                const progressBar = document.getElementById(`progress-${i}`);
-                if (i < to) {
-                    progressBar.classList.remove('bg-gray-600');
-                    progressBar.classList.add('bg-primary');
-                } else {
-                    progressBar.classList.remove('bg-primary');
-                    progressBar.classList.add('bg-gray-600');
+            } else {
+                // Show glass selection step
+                const glassSelectionStep = getStepElement(3);
+                if (glassSelectionStep) {
+                    glassSelectionStep.classList.remove('step-completed');
+                    glassSelectionStep.classList.add('step-current');
+                    currentStep = 3;
+                    generateProgressBar();
+                    glassSelectionStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         }
@@ -959,6 +1036,7 @@
                     }
                     selectedServiceType = selectedType.dataset.serviceType;
                     formData.service = selectedServiceType;
+                    generateProgressBar(); // Regenerate progress bar based on service type
                     return true;
 
                 case 2: // Vehicle Information
@@ -995,7 +1073,20 @@
                         return validateContactInfo();
                     }
 
-                case 5: // Contact Info (for tint)
+                case 5: // Tint Removal (tint only)
+                    if (selectedServiceType === 'window-tint') {
+                        const selectedRemoval = document.querySelector('.tint-removal-option.selected');
+                        if (!selectedRemoval) {
+                            alert('Please select whether you need existing tint removed.');
+                            return false;
+                        }
+                        selectedTintRemoval = selectedRemoval.dataset.removal;
+                        formData.tintRemoval = selectedTintRemoval;
+                        return true;
+                    }
+                    return true;
+
+                case 6: // Contact Info (for tint)
                     return validateContactInfo();
 
                 default:
@@ -1136,6 +1227,7 @@
             } else {
                 ghlData.selectedWindows = formData.tintSelection;
                 ghlData.filmPackage = formData.filmPackage;
+                ghlData.tintRemoval = formData.tintRemoval;
             }
 
             // Simulate API call
@@ -1417,6 +1509,10 @@
                 htmlContent += `<p><strong class="text-primary">Film Package:</strong> ${data.filmPackage.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
             }
 
+            if (data.tintRemoval) {
+                htmlContent += `<p><strong class="text-primary">Existing Tint Removal:</strong> ${data.tintRemoval.charAt(0).toUpperCase() + data.tintRemoval.slice(1)}</p>`;
+            }
+
             if (data.contact) {
                 htmlContent += `<h3 class="text-xl font-semibold mt-6 mb-2 text-primary">Contact Details:</h3>`;
                 htmlContent += `<p><strong class="text-primary">Name:</strong> ${data.contact.full_name}</p>`;
@@ -1484,6 +1580,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             initScrollAnimations();
             initImageLoading();
+            generateProgressBar(); // Initial progress bar
 
             // Service type selection listeners
             document.querySelectorAll('.service-type-option').forEach(option => {
@@ -1541,12 +1638,25 @@
                 });
             });
 
+            // Tint removal option listeners
+            document.querySelectorAll('.tint-removal-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.tint-removal-option').forEach(opt => {
+                        opt.classList.remove('selected', 'border-primary');
+                        opt.classList.add('border-gray-600');
+                    });
+                    this.classList.add('selected', 'border-primary');
+                    this.classList.remove('border-gray-600');
+                });
+            });
+
             // Ensure only the first step is visible on load
             document.getElementById('step-service-type').classList.remove('hidden');
             document.getElementById('step-vehicle-info').classList.add('hidden');
             document.getElementById('step-glass-selection').classList.add('hidden');
             document.getElementById('step-tint-selection').classList.add('hidden');
             document.getElementById('step-film-selection').classList.add('hidden');
+            document.getElementById('step-tint-removal').classList.add('hidden');
             document.getElementById('step-contact-info').classList.add('hidden');
         });
     </script>
