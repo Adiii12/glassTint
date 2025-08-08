@@ -1,1438 +1,1554 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - TintPro</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-      tailwind.config = {
-          theme: {
-              extend: {
-                  colors: {
-                      primary: '#C75803',
-                      'primary-dark': '#A04702',
-                  }
-              }
-          }
-      }
-  </script>
-  <style>
-      /* Page entry animation Back */
-      .main-content-enter {
-          animation: slideInUp 1.2s ease-out forwards;
-      }
-
-      @keyframes slideInUp {
-          0% {
-              opacity: 0;
-              transform: translateY(50px);
-          }
-          100% {
-              opacity: 1;
-              transform: translateY(0);
-          }
-      }
-
-      /* Scroll animations */
-      .fade-in-up {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.8s ease-out;
-      }
-
-      .fade-in-up.animate {
-          opacity: 1;
-          transform: translateY(0);
-      }
-
-      .fade-in-left {
-          opacity: 0;
-          transform: translateX(-30px);
-          transition: all 0.8s ease-out;
-      }
-
-      .fade-in-left.animate {
-          opacity: 1;
-          transform: translateX(0);
-      }
-
-      .fade-in-right {
-          opacity: 0;
-          transform: translateX(30px);
-          transition: all 0.8s ease-out;
-      }
-
-      .fade-in-right.animate {
-          opacity: 1;
-          transform: translateX(0);
-      }
-
-      .scale-in {
-          opacity: 0;
-          transform: scale(0.8);
-          transition: all 0.6s ease-out;
-      }
-
-      .scale-in.animate {
-          opacity: 1;
-          transform: scale(1);
-      }
-
-      /* Stagger animation delays */
-      .delay-100 {
-          transition-delay: 0.1s;
-      }
-
-      .delay-200 {
-          transition-delay: 0.2s;
-      }
-
-      .delay-300 {
-          transition-delay: 0.3s;
-      }
-
-      .delay-400 {
-          transition-delay: 0.4s;
-      }
-
-      .delay-500 {
-          transition-delay: 0.5s;
-      }
-
-      .delay-600 {
-          transition-delay: 0.6s;
-      }
-
-      .delay-700 {
-          transition-delay: 0.7s;
-      }
-
-      .delay-800 {
-          transition-delay: 0.8s;
-      }
-
-      /* Hero text animation */
-      .hero-text {
-          opacity: 0;
-          transform: translateY(50px);
-          animation: heroTextReveal 1.5s ease-out forwards;
-      }
-
-      @keyframes heroTextReveal {
-          0% {
-              opacity: 0;
-              transform: translateY(50px);
-          }
-          100% {
-              opacity: 1;
-              transform: translateY(0);
-          }
-      }
-
-      .hero-text-delay-1 {
-          animation-delay: 0.3s;
-      }
-
-      .hero-text-delay-2 {
-          animation-delay: 0.6s;
-      }
-
-      .hero-text-delay-3 {
-          animation-delay: 0.9s;
-      }
-
-      /* Hover animations */
-      .hover-lift {
-          transition: all 0.3s ease;
-      }
-
-      .hover-lift:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(199, 88, 3, 0.3);
-      }
-
-      /* Loading animation for images */
-      .image-loading {
-          opacity: 0;
-          transition: opacity 0.5s ease-in-out;
-      }
-
-      .image-loaded {
-          opacity: 1;
-      }
-
-      /* Modal styles */
-      .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.7);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1000;
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-
-      .modal-overlay.show {
-          opacity: 1;
-          visibility: visible;
-      }
-
-      .modal-content {
-          background-color: #1a202c;
-          color: #e2e8f0;
-          padding: 2rem;
-          border-radius: 0.5rem;
-          max-width: 90%;
-          max-height: 90%;
-          overflow-y: auto;
-          position: relative;
-          transform: translateY(20px);
-          opacity: 0;
-          transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-
-      .modal-overlay.show .modal-content {
-          transform: translateY(0);
-          opacity: 1;
-      }
-
-      .modal-close-button {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: none;
-          border: none;
-          font-size: 1.5rem;
-          color: #e2e8f0;
-          cursor: pointer;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TintPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C75803',
+                        'primary-dark': '#A04702',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .main-content-enter {
+            animation: slideInUp 1.2s ease-out forwards;
+        }
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease-out;
+        }
+        .scale-in.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        .delay-500 {
+            transition-delay: 0.5s;
+        }
+        .delay-600 {
+            transition-delay: 0.6s;
+        }
+        .delay-700 {
+            transition-delay: 0.7s;
+        }
+        .delay-800 {
+            transition-delay: 0.8s;
+        }
+        .hero-text {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroTextReveal 1.5s ease-out forwards;
+        }
+        @keyframes heroTextReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-text-delay-1 {
+            animation-delay: 0.3s;
+        }
+        .hero-text-delay-2 {
+            animation-delay: 0.6s;
+        }
+        .hero-text-delay-3 {
+            animation-delay: 0.9s;
+        }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(199, 88, 3, 0.3);
+        }
+        .image-loading {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .image-loaded {
+            opacity: 1;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #e2e8f0;
+            cursor: pointer;
+        }
+        .vin-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        .vin-help:hover .vin-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
-  <!-- Main Website Content -->
-  <div id="main-content" class="main-content-enter">
-      <!-- Navigation -->
-      <nav class="bg-black bg-opacity-90 backdrop-blur-sm shadow-lg fixed w-full z-50">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="flex justify-between h-16">
-                  <div class="flex items-center">
-                      <div class="flex-shrink-0">
-                          <a href="./index.html"><img style="width: 120px;" src="./images/logo.png" alt=""
-                                  class="image-loading"></a>
-                      </div>
-                  </div>
-                  <div class="hidden md:flex items-center h-full">
-                      <div class="ml-10 flex items-center space-x-4">
-                          <a href="index.html"
-                              class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                          <a href="services.html"
-                              class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                          <a href="about.html"
-                              class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About
-                              Us</a>
-                          <a href="gallery.html"
-                              class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
-                          <a href="contact.html"
-                              class="text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                          <a href="contact.html"
-                              class="bg-primary hover:bg-primary-dark text-white block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover-lift">Get
-                              Quote</a>
-                      </div>
-                  </div>
-                  <!-- Mobile menu button -->
-                  <div class="md:hidden flex items-center h-full">
-                      <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:text-white"
-                          onclick="toggleMobileMenu()">
-                          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16" />
-                          </svg>
-                      </button>
-                  </div>
-              </div>
-          </div>
-          <!-- Mobile menu -->
-          <div id="mobile-menu" class="md:hidden hidden">
-              <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-700">
-                  <a href="index.html"
-                      class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                  <a href="services.html"
-                      class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Services</a>
-                  <a href="about.html"
-                      class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About
-                      Us</a>
-                  <a href="gallery.html"
-                      class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
-                  <a href="contact.html"
-                      class="text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-              </div>
-          </div>
-      </nav>
-
-      <!-- Hero Section -->
-      <section class="pt-16 pb-16 bg-gray-800">
-          <div class="max-w-7xl pt-16 mx-auto px-4 text-center">
-              <h1 class="text-5xl font-bold mb-6 hero-text">Contact GLASS <span class="text-primary">& TINT</span>
-              </h1>
-              <p class="text-xl text-gray-300 max-w-3xl mx-auto hero-text hero-text-delay-1">Ready to get started?
-                  Contact us today for a free quote or to schedule your service appointment.</p>
-          </div>
-      </section>
-
-      <!-- Multi-Step Quote Form -->
-      <section class="py-16 bg-gray-900">
-          <div class="max-w-4xl mx-auto px-4">
-              <!-- Progress Bar -->
-              <div class="mb-12 fade-in-up">
-                  <div class="flex items-center justify-center space-x-4 mb-4">
-                      <div id="step-indicator-1"
-                          class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">
-                          1</div>
-                      <div class="w-16 h-1 bg-gray-600" id="progress-1"></div>
-                      <div id="step-indicator-2"
-                          class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                          2</div>
-                      <div class="w-16 h-1 bg-gray-600" id="progress-2"></div>
-                      <div id="step-indicator-3"
-                          class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                          3</div>
-                      <div class="w-16 h-1 bg-gray-600" id="progress-3"></div>
-                      <div id="step-indicator-4"
-                          class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
-                          4</div>
-                  </div>
-              </div>
-
-              <!-- Step 1: Choose Service Type -->
-              <div id="step-service-type" class="bg-gray-800 p-8 rounded-lg">
-                  <div class="text-center mb-8">
-                      <h2 class="text-3xl font-bold mb-4">What service do you need?</h2>
-                      <p class="text-gray-300">Select the type of service you're interested in.</p>
-                  </div>
-                  <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                      <div class="service-type-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
-                          data-service-type="auto-glass">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor"
-                                  viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                  </path>
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold mb-2">Auto Glass</h3>
-                      </div>
-                      <div class="service-type-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
-                          data-service-type="window-tint">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor"
-                                  viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold mb-2">Window Tint</h3>
-                      </div>
-                  </div>
-                  <div class="text-center mt-8">
-                      <button onclick="nextStep(2)"
-                          class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                          Continue</button>
-                  </div>
-              </div>
-
-              <!-- Step 2: Vehicle Information -->
-              <div id="step-vehicle-info" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
-                  <div class="text-center mb-8">
-                      <h2 class="text-3xl font-bold mb-4">Tell us about your vehicle</h2>
-                      <p class="text-gray-300">Find your vehicle by entering the year, make, model and style.</p>
-                  </div>
-                  <div class="space-y-6 max-w-lg mx-auto">
-                      <div>
-                          <label class="block text-sm font-medium mb-2">Year</label>
-                          <select id="vehicle-year"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
-                              <option value="">Select year</option>
-                              <option value="2024">2024</option>
-                              <option value="2023">2023</option>
-                              <option value="2022">2022</option>
-                              <option value="2021">2021</option>
-                              <option value="2020">2020</option>
-                              <option value="2019">2019</option>
-                              <option value="2018">2018</option>
-                              <option value="2017">2017</option>
-                              <option value="2016">2016</option>
-                              <option value="2015">2015</option>
-                          </select>
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium mb-2">Make</label>
-                          <select id="vehicle-make"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                              onchange="populateModels()">
-                              <option value="">Select make</option>
-                              <option value="BMW">BMW</option>
-                              <option value="Mercedes-Benz">Mercedes-Benz</option>
-                              <option value="Audi">Audi</option>
-                              <option value="Toyota">Toyota</option>
-                              <option value="Honda">Honda</option>
-                              <option value="Ford">Ford</option>
-                              <option value="Chevrolet">Chevrolet</option>
-                              <option value="Nissan">Nissan</option>
-                              <option value="Hyundai">Hyundai</option>
-                              <option value="Kia">Kia</option>
-                          </select>
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium mb-2">Model</label>
-                          <select id="vehicle-model"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                              onchange="populateStyles()">
-                              <option value="">Select model</option>
-                          </select>
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium mb-2">Style</label>
-                          <select id="vehicle-style"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
-                              <option value="">Select style</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="flex justify-between mt-8">
-                      <button onclick="prevStep(1)"
-                          class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
-                          Back</button>
-                      <button onclick="nextStep(3)"
-                          class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                          Continue</button>
-                  </div>
-              </div>
-
-              <!-- Step 3A: Auto Glass Parts Selection -->
-              <div id="step-auto-glass-parts" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
-                  <div class="text-center mb-8">
-                      <div id="vehicle-display-glass" class="mb-4">
-                          <h3 class="text-2xl font-bold">2023 BMW X6</h3>
-                          <p class="text-primary">4 door utility</p>
-                      </div>
-                      <h2 class="text-3xl font-bold mb-4">Which glass needs repair or replacement?</h2>
-                      <p class="text-gray-300">Select all applicable parts.</p>
-                  </div>
-                  <div id="auto-glass-options-grid" class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-                      <!-- Dynamic glass options will be injected here -->
-                  </div>
-                  <div class="flex justify-between">
-                      <button onclick="prevStep(2)"
-                          class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
-                          Back</button>
-                      <button onclick="nextStep(4)"
-                          class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                          Continue</button>
-                  </div>
-              </div>
-
-              <!-- Step 3B: Window Tint Options Selection -->
-              <div id="step-window-tint-options" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
-                  <div class="text-center mb-8">
-                      <div id="vehicle-display-tint" class="mb-4">
-                          <h3 class="text-2xl font-bold">2023 BMW X6</h3>
-                          <p class="text-primary">4 door utility</p>
-                      </div>
-                      <h2 class="text-3xl font-bold mb-4">Which windows do you want tinted?</h2>
-                      <p class="text-gray-300">Select all applicable options.</p>
-                  </div>
-                  <div id="window-tint-options-grid" class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-                      <!-- Dynamic tint options will be injected here -->
-                  </div>
-                  <div class="flex justify-between">
-                      <button onclick="prevStep(2)"
-                          class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
-                          Back</button>
-                      <button onclick="nextStep(4)"
-                          class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                          Continue</button>
-                  </div>
-              </div>
-
-              <!-- Step 4/5: Damage Details (for Auto Glass Windshield) or Contact Info -->
-              <div id="step-damage-details-or-contact" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
-                  <!-- Content will be dynamically loaded here -->
-              </div>
-          </div>
-      </section>
-
-      <!-- Contact Information -->
-      <section class="py-16 bg-gray-800">
-          <div class="max-w-7xl mx-auto px-4">
-              <div class="grid lg:grid-cols-3 gap-8">
-                  <!-- Contact Details -->
-                  <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-100">
-                      <h3 class="text-2xl font-bold mb-6 text-primary">Contact Information</h3>
-                      <div class="space-y-4">
-                          <div class="flex items-center space-x-4">
-                              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                      </path>
-                                  </svg>
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold">Phone</h4>
-                                  <p class="text-gray-300"><a href="tel:+15551234567" class="hover:text-primary">(555)
-                                          123-4567</a></p>
-                              </div>
-                          </div>
-                          <div class="flex items-center space-x-4">
-                              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                      </path>
-                                  </svg>
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold">Email</h4>
-                                  <p class="text-gray-300"><a href="mailto:info@tintpro.com"
-                                          class="hover:text-primary">info@tintpro.com</a></p>
-                              </div>
-                          </div>
-                          <div class="flex items-center space-x-4">
-                              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                      </path>
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                  </svg>
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold">Address</h4>
-                                  <p class="text-gray-300">123 Main Street<br>City, ST 12345</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <!-- Business Hours -->
-                  <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-200">
-                      <h3 class="text-2xl font-bold mb-6 text-primary">Business Hours</h3>
-                      <div class="space-y-3">
-                          <div class="flex justify-between"><span class="font-medium">Monday - Friday</span><span
-                                  class="text-gray-300">8:00 AM - 6:00 PM</span></div>
-                          <div class="flex justify-between"><span class="font-medium">Saturday</span><span
-                                  class="text-gray-300">9:00 AM - 4:00 PM</span></div>
-                          <div class="flex justify-between"><span class="font-medium">Sunday</span><span
-                                  class="text-gray-300">Closed</span></div>
-                      </div>
-                      <div class="mt-6 p-4 bg-primary bg-opacity-20 rounded-lg">
-                          <p class="text-sm text-gray-300"><strong class="text-primary">Emergency Service:</strong>
-                              Available 24/7 for urgent windshield replacements</p>
-                      </div>
-                  </div>
-
-                  <!-- Social Links -->
-                  <div class="bg-gray-900 p-8 rounded-lg fade-in-up delay-300">
-                      <h3 class="text-2xl font-bold mb-6 text-primary">Follow Us</h3>
-                      <div class="flex space-x-4">
-                          <a href="#"
-                              class="w-12 h-12 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition duration-300 hover-lift">
-                              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                  <path
-                                      d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                              </svg>
-                          </a>
-                          <a href="#"
-                              class="w-12 h-12 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition duration-300 hover-lift">
-                              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                  <path
-                                      d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                              </svg>
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="bg-gray-800 py-12">
-          <div class="max-w-7xl mx-auto px-4">
-              <div class="grid md:grid-cols-4 gap-8">
-                  <div class="fade-in-up">
-                      <img style="width: 120px;" class="mb-4 image-loading" src="./images/logo.png" alt="">
-                      <p class="text-gray-400">Your trusted partner for professional window tinting and auto glass
-                          services.</p>
-                  </div>
-                  <div class="fade-in-up delay-100">
-                      <h4 class="text-lg font-semibold mb-4">Services</h4>
-                      <ul class="space-y-2 text-gray-400">
-                          <li><a href="services.html" class="hover:text-primary">Window Tinting</a></li>
-                          <li><a href="services.html" class="hover:text-primary">Windshield Replacement</a></li>
-                          <li><a href="services.html" class="hover:text-primary">Chip Repair</a></li>
-                          <li><a href="services.html" class="hover:text-primary">Mobile Service</a></li>
-                      </ul>
-                  </div>
-                  <div class="fade-in-up delay-200">
-                      <h4 class="text-lg font-semibold mb-4">Company</h4>
-                      <ul class="space-y-2 text-gray-400">
-                          <li><a href="about.html" class="hover:text-primary">About Us</a></li>
-                          <li><a href="gallery.html" class="hover:text-primary">Gallery</a></li>
-                          <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
-                      </ul>
-                  </div>
-                  <div class="fade-in-up delay-300">
-                      <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
-                      <ul class="space-y-2 text-gray-400">
-                          <li>(555) 123-4567</li>
-                          <li>info@tintpro.com</li>
-                          <li>123 Main St, City, ST 12345</li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 fade-in-up">
-                  <p>&copy; 2024 GLASS <span class="text-primary font-semibold">& TINT</span>. All rights reserved.
-                  </p>
-              </div>
-          </div>
-      </footer>
-  </div>
-
-  <!-- Data Confirmation Modal -->
-  <div id="data-modal-overlay" class="modal-overlay">
-      <div class="modal-content">
-          <button class="modal-close-button" onclick="closeModal()">&times;</button>
-          <h2 class="text-3xl font-bold mb-6 text-primary">Quote Request Summary</h2>
-          <div id="modal-data-display" class="space-y-4 text-gray-200">
-              <!-- Data will be injected here by JavaScript -->
-          </div>
-          <div class="mt-8 flex justify-center gap-4">
-              <button onclick="sendToCRM()"
-                  class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                  Send</button>
-              <button onclick="closeModal()"
-                  class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                  Close</button>
-          </div>
-      </div>
-  </div>
-
-  <script>
-      let currentStep = 1;
-      let formData = {}; // Stores all collected form data
-      let selectedServiceType = ''; // 'auto-glass' or 'window-tint'
-
-      // Data for dynamic dropdowns (simulated API data)
-      const carData = {
-          "BMW": ["X6", "X5", "3 Series", "5 Series"],
-          "Mercedes-Benz": ["C-Class", "E-Class", "GLC", "GLE"],
-          "Audi": ["A3", "A4", "Q5", "Q7"],
-          "Toyota": ["Camry", "Corolla", "RAV4", "Highlander", "Tacoma"],
-          "Honda": ["Civic", "Accord", "CR-V", "Pilot"],
-          "Ford": ["F-150", "Explorer", "Mustang", "Escape"],
-          "Chevrolet": ["Silverado", "Equinox", "Malibu", "Tahoe"],
-          "Nissan": ["Altima", "Rogue", "Titan", "Sentra"],
-          "Hyundai": ["Elantra", "Tucson", "Santa Fe", "Sonata"],
-          "Kia": ["Forte", "Sportage", "Sorento", "Telluride"]
-      };
-
-      const styleData = {
-          "X6": ["4 door utility", "2 door coupe"],
-          "X5": ["4 door utility"],
-          "3 Series": ["4 door sedan", "2 door coupe"],
-          "5 Series": ["4 door sedan"],
-          "C-Class": ["4 door sedan", "2 door coupe"],
-          "E-Class": ["4 door sedan", "2 door coupe"],
-          "GLC": ["4 door utility"],
-          "GLE": ["4 door utility"],
-          "A3": ["4 door sedan", "5 door hatchback"],
-          "A4": ["4 door sedan"],
-          "Q5": ["4 door utility"],
-          "Q7": ["4 door utility"],
-          "Camry": ["4 door sedan"],
-          "Corolla": ["4 door sedan", "5 door hatchback"],
-          "RAV4": ["4 door utility"],
-          "Highlander": ["4 door utility"],
-          "Tacoma": ["2 door pickup", "4 door pickup"],
-          "Civic": ["4 door sedan", "2 door coupe", "5 door hatchback"],
-          "Accord": ["4 door sedan"],
-          "CR-V": ["4 door utility"],
-          "Pilot": ["4 door utility"],
-          "F-150": ["2 door pickup", "4 door pickup"],
-          "Explorer": ["4 door utility"],
-          "Mustang": ["2 door coupe", "2 door convertible"],
-          "Escape": ["4 door utility"],
-          "Silverado": ["2 door pickup", "4 door pickup"],
-          "Equinox": ["4 door utility"],
-          "Malibu": ["4 door sedan"],
-          "Tahoe": ["4 door utility"],
-          "Altima": ["4 door sedan"],
-          "Rogue": ["4 door utility"],
-          "Titan": ["2 door pickup", "4 door pickup"],
-          "Sentra": ["4 door sedan"],
-          "Elantra": ["4 door sedan", "5 door hatchback"],
-          "Tucson": ["4 door utility"],
-          "Santa Fe": ["4 door utility"],
-          "Sonata": ["4 door sedan"],
-          "Forte": ["4 door sedan", "5 door hatchback"],
-          "Sportage": ["4 door utility"],
-          "Sorento": ["4 door utility"],
-          "Telluride": ["4 door utility"]
-      };
-
-      // Data for auto glass parts and their SVG icons
-      const vehicleGlassParts = {
-          "windshield": { name: "Windshield", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2" stroke="#C75803"/></svg>` },
-          "front-door-driver": { name: "Front Door (Driver)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6h9v12h-9V6zM12 6l-3 3m3-3l3 3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "front-door-passenger": { name: "Front Door (Passenger)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h9v12H3V6zM3 6l3 3m-3 3l3-3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "rear-door-driver": { name: "Rear Door (Driver)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6h9v12h-9V6zM12 6l-3 3m3-3l3 3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "rear-door-passenger": { name: "Rear Door (Passenger)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h9v12H3V6zM3 6l3 3m-3 3l3-3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "quarter-glass-driver": { name: "Quarter Glass (Driver)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 6h3v12h-3V6zM18 6l-3 3m3-3l3 3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "quarter-glass-passenger": { name: "Quarter Glass (Passenger)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h3v12H3V6zM3 6l3 3m-3 3l3-3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "vent-glass-driver": { name: "Vent Glass (Driver)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12h-3v6h3v-6zM21 12l-3 3m3-3l3 3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "vent-glass-passenger": { name: "Vent Glass (Passenger)", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12h3v6H3v-6zM3 12l3 3m-3 3l3-3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "rear-window": { name: "Rear Window", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2" stroke="#C75803"/></svg>` }
-      };
-
-      // Simplified mapping of vehicle styles to available glass parts
-      const vehicleGlassPartMapping = {
-          "4 door sedan": ["windshield", "front-door-driver", "front-door-passenger", "rear-door-driver", "rear-door-passenger", "rear-window"],
-          "2 door coupe": ["windshield", "front-door-driver", "front-door-passenger", "quarter-glass-driver", "quarter-glass-passenger", "rear-window"],
-          "4 door utility": ["windshield", "front-door-driver", "front-door-passenger", "rear-door-driver", "rear-door-passenger", "quarter-glass-driver", "quarter-glass-passenger", "rear-window"],
-          "5 door hatchback": ["windshield", "front-door-driver", "front-door-passenger", "rear-door-driver", "rear-door-passenger", "rear-window"],
-          "2 door pickup": ["windshield", "front-door-driver", "front-door-passenger", "rear-window"],
-          "4 door pickup": ["windshield", "front-door-driver", "front-door-passenger", "rear-door-driver", "rear-door-passenger", "rear-window"],
-          "2 door convertible": ["windshield", "front-door-driver", "front-door-passenger", "quarter-glass-driver", "quarter-glass-passenger", "rear-window"]
-      };
-
-      // Data for tint options and their SVG icons
-      const tintOptions = {
-          "two-front-windows": { name: "Two Front Windows", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6h9v12h-9V6zM12 6l-3 3m3-3l3 3" stroke-width="2" stroke="#C75803"/><path d="M3 6h9v12H3V6zM3 6l3 3m-3 3l3-3" stroke-width="2" stroke="#C75803"/></svg>` },
-          "rear-windows": { name: "Rear Windows", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2" stroke="#C75803"/><path d="M12 6v12" stroke="#C75803"/></svg>` },
-          "rear-window-tint": { name: "Rear Window", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2" stroke="#C75803"/></svg>` },
-          "windshield-tint": { name: "Windshield", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2" stroke="#C75803"/></svg>` },
-          "visor-strip": { name: "Visor Strip", icon: `<svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 6h18v2H3z" fill="#C75803"/><path d="M3 12h18" stroke-width="2" stroke="#C75803"/></svg>` }
-      };
-
-      // Mapping for which tint options are available/applicable based on vehicle style
-      const tintOptionMapping = {
-          "4 door sedan": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: false },
-          "2 door coupe": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: true },
-          "4 door utility": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: true },
-          "5 door hatchback": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: false },
-          "2 door pickup": { options: ["two-front-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: false },
-          "4 door pickup": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: false },
-          "2 door convertible": { options: ["two-front-windows", "rear-windows", "rear-window-tint", "windshield-tint"], rearWindowsIncludesQuarterVent: true }
-      };
-
-      function toggleMobileMenu() {
-          const menu = document.getElementById('mobile-menu');
-          menu.classList.toggle('hidden');
-      }
-
-      function getStepElement(stepNum) {
-          switch (stepNum) {
-              case 1: return document.getElementById('step-service-type');
-              case 2: return document.getElementById('step-vehicle-info');
-              case 3: return selectedServiceType === 'auto-glass' ? document.getElementById('step-auto-glass-parts') : document.getElementById('step-window-tint-options');
-              case 4: 
-              case 5: return document.getElementById('step-damage-details-or-contact');
-              default: return null;
-          }
-      }
-
-      function nextStep(step) {
-          if (!validateStep(currentStep)) {
-              return;
-          }
-
-          const currentStepElement = getStepElement(currentStep);
-          const nextStepElement = getStepElement(step);
-
-          // Hide the continue and back buttons of the current step
-          if (currentStepElement) {
-              const continueButton = currentStepElement.querySelector('.flex.justify-between button:last-child');
-              const backButton = currentStepElement.querySelector('.flex.justify-between button:first-child');
-
-              if (continueButton && continueButton.textContent.trim() === 'Continue') {
-                  continueButton.classList.add('hidden');
-              }
-              if (backButton && backButton.textContent.trim() === 'Back') {
-                  backButton.classList.add('hidden');
-              }
-          }
-
-          if (nextStepElement) {
-              nextStepElement.classList.remove('hidden');
-              nextStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-
-          updateProgress(currentStep, step);
-          currentStep = step;
-
-          // Special handling for dynamic steps
-          if (currentStep === 3) {
-              if (selectedServiceType === 'auto-glass') {
-                  populateAutoGlassParts();
-                  document.getElementById('step-auto-glass-parts').classList.remove('hidden');
-                  document.getElementById('step-window-tint-options').classList.add('hidden');
-              } else if (selectedServiceType === 'window-tint') {
-                  populateWindowTintOptions();
-                  document.getElementById('step-window-tint-options').classList.remove('hidden');
-                  document.getElementById('step-auto-glass-parts').classList.add('hidden');
-              }
-          } else if (currentStep === 4) {
-              if (selectedServiceType === 'auto-glass' && formData.needsDamageDetails) {
-                  loadDamageDetailsStep();
-              } else {
-                  loadContactInfoStep();
-              }
-              document.getElementById('step-damage-details-or-contact').classList.remove('hidden');
-          } else if (currentStep === 5 && selectedServiceType === 'auto-glass' && formData.needsDamageDetails) {
-              loadContactInfoStep();
-              document.getElementById('step-damage-details-or-contact').classList.remove('hidden');
-          }
-      }
-
-      function prevStep(step) {
-          const currentStepElement = getStepElement(currentStep);
-          const prevStepElement = getStepElement(step);
-
-          if (currentStepElement) {
-              currentStepElement.classList.add('hidden');
-          }
-
-          if (prevStepElement) {
-              prevStepElement.classList.remove('hidden');
-              prevStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-
-          updateProgress(currentStep, step);
-          currentStep = step;
-      }
-
-      function validateStep(step) {
-          switch (step) {
-              case 1: // Service Type Selection
-                  const selectedType = document.querySelector('.service-type-option.selected');
-                  if (!selectedType) {
-                      alert('Please select a service type (Auto Glass or Window Tint).');
-                      return false;
-                  }
-                  selectedServiceType = selectedType.dataset.serviceType;
-                  formData.serviceType = selectedServiceType;
-                  return true;
-              case 2: // Vehicle Information
-                  const year = document.getElementById('vehicle-year').value;
-                  const make = document.getElementById('vehicle-make').value;
-                  const model = document.getElementById('vehicle-model').value;
-                  const style = document.getElementById('vehicle-style').value;
-                  if (!year || !make || !model || !style) {
-                      alert('Please fill in all vehicle information fields.');
-                      return false;
-                  }
-                  formData.vehicle = { year, make, model, style };
-                  return true;
-              case 3: // Auto Glass Parts OR Window Tint Options
-                  if (selectedServiceType === 'auto-glass') {
-                      const selectedGlassParts = Array.from(document.querySelectorAll('.glass-option.selected')).map(el => el.dataset.part);
-                      if (selectedGlassParts.length === 0) {
-                          alert('Please select at least one glass part.');
-                          return false;
-                      }
-                      formData.service = selectedGlassParts;
-                      formData.needsDamageDetails = selectedGlassParts.includes('windshield');
-                  } else if (selectedServiceType === 'window-tint') {
-                      const selectedTintOptions = Array.from(document.querySelectorAll('.tint-option.selected')).map(el => el.dataset.option);
-                      if (selectedTintOptions.length === 0) {
-                          alert('Please select at least one tint option.');
-                          return false;
-                      }
-                      formData.service = selectedTintOptions;
-                      formData.needsDamageDetails = false;
-                  }
-                  return true;
-              case 4: // Damage Details (if auto glass windshield) OR Contact Info
-                  if (selectedServiceType === 'auto-glass' && formData.needsDamageDetails) {
-                      const selectedDamage = document.querySelector('.damage-option.selected');
-                      const selectedSide = document.querySelector('.side-option.selected');
-                      if (!selectedDamage || !selectedSide) {
-                          alert('Please select damage type and side.');
-                          return false;
-                      }
-                      formData.damage = selectedDamage.dataset.damage;
-                      formData.side = selectedSide.dataset.side;
-                      return true;
-                  } else {
-                      const name = document.getElementById('name')?.value;
-                      const email = document.getElementById('email')?.value;
-                      const phone = document.getElementById('phone')?.value;
-                      if (!name || !email || !phone) {
-                          alert('Please fill in all required contact fields (Name, Email, Phone).');
-                          return false;
-                      }
-                      formData.contact = { name, email, phone, message: document.getElementById('message')?.value || '' };
-                      return true;
-                  }
-              case 5: // Contact Info (after damage details for windshield)
-                  const name = document.getElementById('name')?.value;
-                  const email = document.getElementById('email')?.value;
-                  const phone = document.getElementById('phone')?.value;
-                  if (!name || !email || !phone) {
-                      alert('Please fill in all required contact fields (Name, Email, Phone).');
-                      return false;
-                  }
-                  formData.contact = { name, email, phone, message: document.getElementById('message')?.value || '' };
-                  return true;
-              default:
-                  return true;
-          }
-      }
-
-      function updateProgress(from, to) {
-          // Update step indicators
-          document.getElementById(`step-indicator-${from}`).classList.remove('bg-primary');
-          document.getElementById(`step-indicator-${from}`).classList.add('bg-gray-600');
-          document.getElementById(`step-indicator-${to > 4 ? 4 : to}`).classList.remove('bg-gray-600');
-          document.getElementById(`step-indicator-${to > 4 ? 4 : to}`).classList.add('bg-primary');
-
-          // Update progress bars
-          for (let i = 1; i < (to > 4 ? 4 : to); i++) {
-              const progressBar = document.getElementById(`progress-${i}`);
-              if (progressBar) {
-                  progressBar.classList.remove('bg-gray-600');
-                  progressBar.classList.add('bg-primary');
-              }
-          }
-          // If going back, reset progress bars for steps ahead of 'to'
-          for (let i = from; i > to; i--) {
-              const progressBar = document.getElementById(`progress-${i - 1}`);
-              if (progressBar) {
-                  progressBar.classList.remove('bg-primary');
-                  progressBar.classList.add('bg-gray-600');
-              }
-          }
-      }
-
-      function updateVehicleDisplay(type) {
-          const year = document.getElementById('vehicle-year').value;
-          const make = document.getElementById('vehicle-make').value;
-          const model = document.getElementById('vehicle-model').value;
-          const style = document.getElementById('vehicle-style').value;
-          const displayElement = document.getElementById(`vehicle-display-${type}`);
-          if (displayElement) {
-              displayElement.innerHTML = `
-                  <h3 class="text-2xl font-bold">${year} ${make} ${model}</h3>
-                  <p class="text-primary">${style}</p>
-              `;
-          }
-      }
-
-      function handleFinalSubmit(event) {
-          event.preventDefault();
-          // Validate contact form data
-          const name = document.getElementById('name').value;
-          const email = document.getElementById('email').value;
-          const phone = document.getElementById('phone').value;
-          const message = document.getElementById('message').value;
-
-          if (!name || !email || !phone) {
-              alert('Please fill in all required contact fields (Name, Email, Phone).');
-              return;
-          }
-
-          const contactData = { name, email, phone, message };
-          formData.contact = contactData;
-          console.log('Final form data:', formData);
-          displayDataInModal(formData);
-      }
-
-      function populateModels() {
-          const makeSelect = document.getElementById('vehicle-make');
-          const modelSelect = document.getElementById('vehicle-model');
-          const styleSelect = document.getElementById('vehicle-style');
-          const selectedMake = makeSelect.value;
-
-          modelSelect.innerHTML = '<option value="">Select model</option>';
-          styleSelect.innerHTML = '<option value="">Select style</option>';
-
-          if (selectedMake && carData[selectedMake]) {
-              carData[selectedMake].forEach(model => {
-                  const option = document.createElement('option');
-                  option.value = model;
-                  option.textContent = model;
-                  modelSelect.appendChild(option);
-              });
-          }
-          document.getElementById('auto-glass-options-grid').innerHTML = '';
-          document.getElementById('window-tint-options-grid').innerHTML = '';
-      }
-
-      function populateStyles() {
-          const modelSelect = document.getElementById('vehicle-model');
-          const styleSelect = document.getElementById('vehicle-style');
-          const selectedModel = modelSelect.value;
-
-          styleSelect.innerHTML = '<option value="">Select style</option>';
-
-          if (selectedModel && styleData[selectedModel]) {
-              styleData[selectedModel].forEach(style => {
-                  const option = document.createElement('option');
-                  option.value = style;
-                  option.textContent = style;
-                  styleSelect.appendChild(option);
-              });
-          }
-          document.getElementById('auto-glass-options-grid').innerHTML = '';
-          document.getElementById('window-tint-options-grid').innerHTML = '';
-      }
-
-      function populateAutoGlassParts() {
-          const selectedStyle = document.getElementById('vehicle-style').value;
-          const glassOptionsGrid = document.getElementById('auto-glass-options-grid');
-          glassOptionsGrid.innerHTML = '';
-
-          const availableParts = vehicleGlassPartMapping[selectedStyle] || [];
-          availableParts.forEach(partKey => {
-              const part = vehicleGlassParts[partKey];
-              if (part) {
-                  const div = document.createElement('div');
-                  div.className = 'glass-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift';
-                  div.dataset.part = partKey;
-                  div.innerHTML = `
-                      <div class="mb-4">${part.icon}</div>
-                      <h3 class="font-bold mb-2">${part.name}</h3>
-                      <div class="w-4 h-4 border-2 border-gray-400 rounded mx-auto glass-checkbox"></div>
-                  `;
-                  div.addEventListener('click', function () {
-                      this.classList.toggle('selected');
-                      this.classList.toggle('border-primary');
-                      this.classList.toggle('border-gray-600');
-                      this.querySelector('.glass-checkbox').classList.toggle('bg-primary');
-                      this.querySelector('.glass-checkbox').classList.toggle('border-gray-400');
-                  });
-                  glassOptionsGrid.appendChild(div);
-              }
-          });
-          updateVehicleDisplay('glass');
-      }
-
-      function populateWindowTintOptions() {
-          const selectedStyle = document.getElementById('vehicle-style').value;
-          const tintOptionsGrid = document.getElementById('window-tint-options-grid');
-          tintOptionsGrid.innerHTML = '';
-
-          const styleTintInfo = tintOptionMapping[selectedStyle];
-          const availableOptions = styleTintInfo ? styleTintInfo.options : [];
-          const rearWindowsIncludesQuarterVent = styleTintInfo ? styleTintInfo.rearWindowsIncludesQuarterVent : false;
-
-          availableOptions.forEach(optionKey => {
-              const option = tintOptions[optionKey];
-              if (option) {
-                  const div = document.createElement('div');
-                  div.className = 'tint-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift';
-                  div.dataset.option = optionKey;
-                  div.innerHTML = `
-                      <div class="mb-4">${option.icon}</div>
-                      <h3 class="font-bold mb-2">${option.name}</h3>
-                      ${optionKey === 'rear-windows' && rearWindowsIncludesQuarterVent ? '<p class="text-sm text-gray-400">(Includes quarter & vent glass)</p>' : ''}
-                      <div class="w-4 h-4 border-2 border-gray-400 rounded mx-auto tint-checkbox"></div>
-                  `;
-                  div.addEventListener('click', function () {
-                      this.classList.toggle('selected');
-                      this.classList.toggle('border-primary');
-                      this.classList.toggle('border-gray-600');
-                      this.querySelector('.tint-checkbox').classList.toggle('bg-primary');
-                      this.querySelector('.tint-checkbox').classList.toggle('border-gray-400');
-
-                      if (optionKey === 'windshield-tint') {
-                          const visorStripOption = document.querySelector('[data-option="visor-strip"]');
-                          if (visorStripOption) {
-                              if (this.classList.contains('selected')) {
-                                  visorStripOption.style.display = 'block';
-                              } else {
-                                  visorStripOption.style.display = 'none';
-                                  visorStripOption.classList.remove('selected', 'border-primary');
-                                  visorStripOption.classList.add('border-gray-600');
-                                  visorStripOption.querySelector('.tint-checkbox').classList.remove('bg-primary');
-                                  visorStripOption.querySelector('.tint-checkbox').classList.add('border-gray-400');
-                              }
-                          }
-                      }
-                  });
-                  tintOptionsGrid.appendChild(div);
-              }
-          });
-
-          const visorStripOption = document.querySelector('[data-option="visor-strip"]');
-          if (visorStripOption) {
-              visorStripOption.style.display = 'none';
-          }
-          updateVehicleDisplay('tint');
-      }
-
-      function loadDamageDetailsStep() {
-          const finalStepContainer = document.getElementById('step-damage-details-or-contact');
-          finalStepContainer.innerHTML = `
-              <div class="text-center mb-8">
-                  <h2 class="text-3xl font-bold mb-8">What's your windshield damage?</h2>
-                  <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
-                      <div class="damage-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift" data-damage="crack">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <rect x="3" y="6" width="18" height="12" rx="2" ry="2" stroke-width="2"/>
-                                  <path d="M8 10l8 6" stroke-width="2" stroke="#C75803"/>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold mb-2">Crack</h3>
-                          <p class="text-sm text-gray-400">My damage is larger than 6 inches.</p>
-                      </div>
-                      <div class="damage-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift" data-damage="chips">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <rect x="3" y="6" width="18" height="12" rx="2" ry="2" stroke-width="2"/>
-                                  <circle cx="10" cy="12" r="2" fill="#C75803"/>
-                                  <circle cx="14" cy="10" r="1" fill="#C75803"/>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold mb-2 text-primary">Chip(s)</h3>
-                          <p class="text-sm text-gray-400">I have three or fewer chips smaller than 6 inches.</p>
-                      </div>
-                  </div>
-                  <h2 class="text-3xl font-bold mb-8">Which side is your damage on?</h2>
-                  <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                      <div class="side-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift" data-side="driver">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <rect x="2" y="8" width="20" height="8" rx="2" ry="2" stroke-width="2"/>
-                                  <rect x="4" y="10" width="6" height="4" rx="1" ry="1" stroke-width="2" fill="#C75803"/>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold">Driver side</h3>
-                          <div class="w-4 h-4 border-2 border-gray-400 rounded mx-auto mt-2 side-checkbox"></div>
-                      </div>
-                      <div class="side-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift" data-side="passenger">
-                          <div class="mb-4">
-                              <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <rect x="2" y="8" width="20" height="8" rx="2" ry="2" stroke-width="2"/>
-                                  <rect x="14" y="10" width="6" height="4" rx="1" ry="1" stroke-width="2" fill="#C75803"/>
-                              </svg>
-                          </div>
-                          <h3 class="font-bold">Passenger side</h3>
-                          <div class="w-4 h-4 border-2 border-gray-400 rounded mx-auto mt-2 side-checkbox"></div>
-                      </div>
-                  </div>
-              </div>
-              <div class="flex justify-between mt-8">
-                  <button type="button" onclick="prevStep(3)" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
-                      Back
-                  </button>
-                  <button type="button" onclick="nextStep(5)" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
-                      Continue
-                  </button>
-              </div>
-          `;
-          attachDamageSideListeners();
-      }
-
-      function loadContactInfoStep() {
-          const finalStepContainer = document.getElementById('step-damage-details-or-contact');
-          finalStepContainer.innerHTML = `
-              <div class="text-center mb-8">
-                  <h2 class="text-3xl font-bold mb-4">Almost done! Contact details</h2>
-                  <p class="text-gray-300">We'll send your quote and schedule your appointment.</p>
-              </div>
-              <form class="space-y-6 max-w-lg mx-auto" onsubmit="handleFinalSubmit(event)">
-                  <div id="success-message" class="hidden bg-green-600 text-white p-3 rounded-lg text-center mb-4">
-                      Thank you! Your quote request has been submitted.
-                  </div>
-                  <div>
-                      <label for="name" class="block text-sm font-medium mb-2">Full Name *</label>
-                      <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
-                  </div>
-                  <div>
-                      <label for="email" class="block text-sm font-medium mb-2">Email Address *</label>
-                      <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
-                  </div>
-                  <div>
-                      <label for="phone" class="block text-sm font-medium mb-2">Phone Number *</label>
-                      <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
-                  </div>
-                  <div>
-                      <label for="message" class="block text-sm font-medium mb-2">Additional Notes</label>
-                      <textarea id="message" name="message" rows="3" placeholder="Any additional information about your service needs..." class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white resize-none"></textarea>
-                  </div>
-                  <div class="flex justify-between">
-                      <button type="button" onclick="prevStep(${selectedServiceType === 'auto-glass' && formData.needsDamageDetails ? 4 : 3})" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
-                          Back
-                      </button>
-                      <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-lg transition duration-300 hover-lift">
-                          Get My Quote
-                      </button>
-                  </div>
-              </form>
-          `;
-      }
-
-      function displayDataInModal(data) {
-          const modalDisplay = document.getElementById('modal-data-display');
-          modalDisplay.innerHTML = '';
-          let htmlContent = '';
-
-          if (data.serviceType) {
-              htmlContent += `<p><strong class="text-primary">Service Type:</strong> ${data.serviceType.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
-          }
-
-          if (data.vehicle) {
-              htmlContent += `<p><strong class="text-primary">Vehicle:</strong> ${data.vehicle.year} ${data.vehicle.make} ${data.vehicle.model} (${data.vehicle.style})</p>`;
-          }
-
-          if (data.service && Array.isArray(data.service)) {
-              const serviceNames = data.service.map(item => {
-                  if (selectedServiceType === 'auto-glass' && vehicleGlassParts[item]) {
-                      return vehicleGlassParts[item].name;
-                  } else if (selectedServiceType === 'window-tint' && tintOptions[item]) {
-                      return tintOptions[item].name;
-                  }
-                  return item;
-              }).join(', ');
-              htmlContent += `<p><strong class="text-primary">${selectedServiceType === 'auto-glass' ? 'Glass Parts:' : 'Tint Options:'}</strong> ${serviceNames}</p>`;
-          }
-
-          if (selectedServiceType === 'auto-glass' && data.needsDamageDetails) {
-              if (data.damage) {
-                  htmlContent += `<p><strong class="text-primary">Damage Type:</strong> ${data.damage.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
-              }
-              if (data.side) {
-                  htmlContent += `<p><strong class="text-primary">Damage Side:</strong> ${data.side.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
-              }
-          }
-
-          if (data.contact) {
-              htmlContent += `<h3 class="text-xl font-semibold mt-6 mb-2 text-primary">Contact Details:</h3>`;
-              htmlContent += `<p><strong class="text-primary">Name:</strong> ${data.contact.name}</p>`;
-              htmlContent += `<p><strong class="text-primary">Email:</strong> ${data.contact.email}</p>`;
-              htmlContent += `<p><strong class="text-primary">Phone:</strong> ${data.contact.phone}</p>`;
-              if (data.contact.message) {
-                  htmlContent += `<p><strong class="text-primary">Notes:</strong> ${data.contact.message}</p>`;
-              }
-          }
-          modalDisplay.innerHTML = htmlContent;
-          document.getElementById('data-modal-overlay').classList.add('show');
-      }
-
-      function closeModal() {
-          document.getElementById('data-modal-overlay').classList.remove('show');
-      }
-
-    
-      // Function to simulate sending data to CRM and then reset the form
-      function sendToCRM() {
-          // In a real application, you would send `formData` to your CRM backend here.
-          // For now, we'll just log it and simulate success.
-          console.log('Simulating sending data to CRM:', formData);
-          closeModal(); // Hide the popup
-          resetFormAndShowSuccess(); // Reset form and show success message
-      }
-
-      // New function to reset form and show success message
-      function resetFormAndShowSuccess() {
-          // Reset the form fields
-          document.getElementById('vehicle-year').value = '';
-          document.getElementById('vehicle-make').value = '';
-          document.getElementById('vehicle-model').innerHTML = '<option value="">Select model</option>';
-          document.getElementById('vehicle-style').innerHTML = '<option value="">Select style</option>';
-          document.getElementById('name').value = '';
-          document.getElementById('email').value = '';
-          document.getElementById('phone').value = '';
-          document.getElementById('message').value = '';
-
-          // Reset selected service type
-          document.querySelectorAll('.service-type-option.selected').forEach(opt => {
-              opt.classList.remove('selected', 'border-primary');
-              opt.classList.add('border-gray-600');
-          });
-          selectedServiceType = ''; // Clear selected service type
-
-          // Reset selected glass/tint options
-          document.querySelectorAll('.glass-option.selected').forEach(opt => {
-              opt.classList.remove('selected', 'border-primary');
-              opt.classList.add('border-gray-600');
-              opt.querySelector('.glass-checkbox').classList.remove('bg-primary');
-              opt.querySelector('.glass-checkbox').classList.add('border-gray-400');
-          });
-          document.querySelectorAll('.tint-option.selected').forEach(opt => {
-              opt.classList.remove('selected', 'border-primary');
-              opt.classList.add('border-gray-600');
-              opt.querySelector('.tint-checkbox').classList.remove('bg-primary');
-              opt.querySelector('.tint-checkbox').classList.add('border-gray-400');
-          });
-          document.getElementById('auto-glass-options-grid').innerHTML = ''; // Clear dynamic content
-          document.getElementById('window-tint-options-grid').innerHTML = ''; // Clear dynamic content
-
-          // Reset damage/side options
-          document.querySelectorAll('.damage-option.selected').forEach(opt => {
-              opt.classList.remove('selected', 'border-primary');
-              opt.classList.add('border-gray-600');
-          });
-          document.querySelectorAll('.side-option.selected').forEach(opt => {
-              opt.classList.remove('selected', 'border-primary');
-              opt.classList.add('border-gray-600');
-              opt.querySelector('.side-checkbox').classList.remove('bg-primary');
-              opt.querySelector('.side-checkbox').classList.add('border-gray-400');
-          });
-
-          // Reset current step and progress bar to step 1
-          currentStep = 1;
-
-          // Hide all steps except the first one
-          document.getElementById('step-service-type').classList.remove('hidden');
-          document.getElementById('step-vehicle-info').classList.add('hidden');
-          document.getElementById('step-auto-glass-parts').classList.add('hidden');
-          document.getElementById('step-window-tint-options').classList.add('hidden');
-          document.getElementById('step-damage-details-or-contact').classList.add('hidden');
-
-          // Ensure the first step's continue button is visible (it has no back button)
-          const firstStepContinueButton = document.getElementById('step-service-type').querySelector('.flex.justify-between button:last-child');
-          if (firstStepContinueButton) {
-              firstStepContinueButton.classList.remove('hidden');
-          }
-
-          // Reset progress indicators
-          document.getElementById('step-indicator-1').classList.add('bg-primary');
-          document.getElementById('step-indicator-1').classList.remove('bg-gray-600');
-          document.getElementById('step-indicator-2').classList.remove('bg-primary');
-          document.getElementById('step-indicator-2').classList.add('bg-gray-600');
-          document.getElementById('step-indicator-3').classList.remove('bg-primary');
-          document.getElementById('step-indicator-3').classList.add('bg-gray-600');
-          document.getElementById('step-indicator-4').classList.remove('bg-primary');
-          document.getElementById('step-indicator-4').classList.add('bg-gray-600');
-          document.getElementById('progress-1').classList.remove('bg-primary');
-          document.getElementById('progress-1').classList.add('bg-gray-600');
-          document.getElementById('progress-2').classList.remove('bg-primary');
-          document.getElementById('progress-2').classList.add('bg-gray-600');
-          document.getElementById('progress-3').classList.remove('bg-primary');
-          document.getElementById('progress-3').classList.add('bg-gray-600');
-
-          // Scroll to the first step
-          document.getElementById('step-service-type').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-          // Show success message
-          const successMessage = document.getElementById('success-message');
-          if (successMessage) { // Ensure it exists before trying to show it
-              successMessage.classList.remove('hidden');
-              // Hide after a few seconds
-              setTimeout(() => {
-                  successMessage.classList.add('hidden');
-              }, 5000); // Hide after 5 seconds
-          }
-      }
-
-      // Attach event listeners for dynamically loaded content
-      function attachDamageSideListeners() {
-          // Damage selection handlers
-          document.querySelectorAll('.damage-option').forEach(option => {
-              option.addEventListener('click', function () {
-                  document.querySelectorAll('.damage-option').forEach(opt => {
-                      opt.classList.remove('selected', 'border-primary');
-                      opt.classList.add('border-gray-600');
-                  });
-                  this.classList.add('selected', 'border-primary');
-                  this.classList.remove('border-gray-600');
-              });
-          });
-
-          // Side selection handlers
-          document.querySelectorAll('.side-option').forEach(option => {
-              option.addEventListener('click', function () {
-                  document.querySelectorAll('.side-option').forEach(opt => {
-                      opt.classList.remove('selected', 'border-primary');
-                      opt.classList.add('border-gray-600');
-                      opt.querySelector('.side-checkbox').classList.remove('bg-primary');
-                      opt.querySelector('.side-checkbox').classList.add('border-gray-400');
-                  });
-                  this.classList.add('selected', 'border-primary');
-                  this.classList.remove('border-gray-600');
-                  this.querySelector('.side-checkbox').classList.add('bg-primary');
-                  this.querySelector('.side-checkbox').classList.remove('border-gray-400');
-              });
-          });
-      }
-
-      // Scroll animations
-      function initScrollAnimations() {
-          const observerOptions = {
-              threshold: 0.1,
-              rootMargin: '0px 0px -50px 0px'
-          };
-          const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                      entry.target.classList.add('animate');
-                  }
-              });
-          }, observerOptions);
-
-          // Observe all animation elements
-          document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
-              observer.observe(el);
-          });
-      }
-
-      // Image loading animations
-      function initImageLoading() {
-          const images = document.querySelectorAll('.image-loading');
-          images.forEach(img => {
-              if (img.complete) {
-                  img.classList.add('image-loaded');
-              } else {
-                  img.addEventListener('load', () => {
-                      img.classList.add('image-loaded');
-                  });
-              }
-          });
-      }
-
-      // Initialize animations and event listeners on page load
-      document.addEventListener('DOMContentLoaded', function () {
-          initScrollAnimations();
-          initImageLoading();
-
-          // Initial event listeners for service type selection
-          document.querySelectorAll('.service-type-option').forEach(option => {
-              option.addEventListener('click', function () {
-                  document.querySelectorAll('.service-type-option').forEach(opt => {
-                      opt.classList.remove('selected', 'border-primary');
-                      opt.classList.add('border-gray-600');
-                  });
-                  this.classList.add('selected', 'border-primary');
-                  this.classList.remove('border-gray-600');
-              });
-          });
-
-          // Ensure only the first step is visible on load and its continue button is visible
-          document.getElementById('step-service-type').classList.remove('hidden');
-          document.getElementById('step-vehicle-info').classList.add('hidden');
-          document.getElementById('step-auto-glass-parts').classList.add('hidden');
-          document.getElementById('step-window-tint-options').classList.add('hidden');
-          document.getElementById('step-damage-details-or-contact').classList.add('hidden');
-
-          const firstStepContinueButton = document.getElementById('step-service-type').querySelector('.flex.justify-between button:last-child');
-          if (firstStepContinueButton) {
-              firstStepContinueButton.classList.remove('hidden');
-          }
-      });
-  </script>
+    <div id="main-content" class="main-content-enter">
+        <nav class="bg-black bg-opacity-90 backdrop-blur-sm shadow-lg fixed w-full z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <a href="./index.html"><img style="width: 120px;" src="./images/logo.png" alt=""
+                                    class="image-loading"></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex items-center h-full">
+                        <div class="ml-10 flex items-center space-x-4">
+                            <a href="index.html"
+                                class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="services.html"
+                                class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                            <a href="about.html"
+                                class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About
+                                Us</a>
+                            <a href="gallery.html"
+                                class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                            <a href="contact.html"
+                                class="text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                            <a href="contact.html"
+                                class="bg-primary hover:bg-primary-dark text-white block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover-lift">Get
+                                Quote</a>
+                        </div>
+                    </div>
+                    <div class="md:hidden flex items-center h-full">
+                        <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:text-white"
+                            onclick="toggleMobileMenu()">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-700">
+                    <a href="index.html"
+                        class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="services.html"
+                        class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                    <a href="about.html"
+                        class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About
+                        Us</a>
+                    <a href="gallery.html"
+                        class="text-gray-300 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                    <a href="contact.html"
+                        class="text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pt-16 pb-16 bg-gray-800">
+            <div class="max-w-7xl pt-16 mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold mb-6 hero-text">Contact GLASS <span class="text-primary">& TINT</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto hero-text hero-text-delay-1">Ready to get started?
+                    Contact us today for a free quote or to schedule your service appointment.</p>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-900">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="mb-12 fade-in-up">
+                    <div class="flex items-center justify-center space-x-4 mb-4">
+                        <div id="step-indicator-1"
+                            class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">
+                            1</div>
+                        <div class="w-16 h-1 bg-gray-600" id="progress-1"></div>
+                        <div id="step-indicator-2"
+                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
+                            2</div>
+                        <div class="w-16 h-1 bg-gray-600" id="progress-2"></div>
+                        <div id="step-indicator-3"
+                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
+                            3</div>
+                        <div class="w-16 h-1 bg-gray-600" id="progress-3"></div>
+                        <div id="step-indicator-4"
+                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
+                            4</div>
+                        <div class="w-16 h-1 bg-gray-600" id="progress-4"></div>
+                        <div id="step-indicator-5"
+                            class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-sm font-bold">
+                            5</div>
+                    </div>
+                </div>
+
+                <div id="step-service-type" class="bg-gray-800 p-8 rounded-lg">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">What service do you need?</h2>
+                        <p class="text-gray-300">Select the type of service you're interested in.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                        <div class="service-type-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-service-type="auto-glass">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Auto Glass</h3>
+                        </div>
+                        <div class="service-type-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-service-type="window-tint">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Window Tint</h3>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <button onclick="nextStep(2)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+
+                <div id="step-vehicle-info" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">Tell us about your vehicle</h2>
+                        <p class="text-gray-300">Find your vehicle by entering the year, make, model and style.</p>
+                    </div>
+                    <div class="space-y-6 max-w-lg mx-auto">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Year</label>
+                            <select id="vehicle-year"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
+                                <option value="">Select year</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Make</label>
+                            <select id="vehicle-make"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
+                                onchange="populateModels()">
+                                <option value="">Select make</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                <option value="Audi">Audi</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Ford">Ford</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Nissan">Nissan</option>
+                                <option value="Hyundai">Hyundai</option>
+                                <option value="Kia">Kia</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Model</label>
+                            <select id="vehicle-model"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
+                                onchange="populateStyles()">
+                                <option value="">Select model</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Style</label>
+                            <select id="vehicle-style"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
+                                <option value="">Select style</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(1)"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                            Back</button>
+                        <button onclick="nextStep(3)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+                <div id="step-glass-selection" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">What glass needs repair or replacement?</h2>
+                        <p class="text-gray-300">Select the glass that needs service.</p>
+                    </div>
+                    
+                    <div id="main-glass-options" class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+                        <div class="glass-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-glass-type="windshield">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Windshield</h3>
+                        </div>
+                        <div class="glass-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-glass-type="driver-side">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 6h9v12h-9V6z" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Driver Side</h3>
+                        </div>
+                        <div class="glass-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-glass-type="passenger-side">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h9v12H3V6z" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Passenger Side</h3>
+                        </div>
+                        <div class="glass-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-glass-type="back-glass">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h18v12H3V6z" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Back Glass</h3>
+                        </div>
+                    </div>
+
+                    <div id="glass-submenu" class="hidden mt-8">
+                         Dynamic content will be loaded here 
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(2)"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                            Back</button>
+                        <button onclick="nextStep(4)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+
+                <div id="step-tint-selection" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">What windows need tinting?</h2>
+                        <p class="text-gray-300">Select your tinting package.</p>
+                    </div>
+                    
+                    <div id="main-tint-options" class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+                        <div class="tint-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-tint-type="windshield-only">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h18v12H3V6zM3 8h18" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Windshield Only</h3>
+                            <p class="text-sm text-gray-400">Windshield tinting for sun protection</p>
+                        </div>
+                        <div class="tint-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-tint-type="whole-car">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h18v12H3V6zM3 12h18M12 6v12" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Whole Car Package</h3>
+                            <p class="text-sm text-gray-400">Complete vehicle tinting</p>
+                        </div>
+                        <div class="tint-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-tint-type="two-front">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h9v12H3V6zM12 6h9v12h-9V6z" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Two Front Windows Only</h3>
+                            <p class="text-sm text-gray-400">Front driver and passenger windows</p>
+                        </div>
+                        <div class="tint-main-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-tint-type="rear-only">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 6h18v12H3V6zM3 12h18" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Rear Windows Only</h3>
+                            <p class="text-sm text-gray-400">Back doors, quarters, and rear glass</p>
+                        </div>
+                    </div>
+
+                    <div id="tint-submenu" class="hidden mt-8">
+                         Dynamic content will be loaded here 
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(2)"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                            Back</button>
+                        <button onclick="nextStep(4)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+
+                <div id="step-film-selection" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">Choose your film package</h2>
+                        <p class="text-gray-300">Select the quality level that's right for you.</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+                        <div class="film-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-film-type="carbon">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Carbon (Basic)</h3>
+                            <p class="text-sm text-gray-400 mb-4">Great entry-level film. Provides privacy, blocks basic heat & UV, and looks clean.</p>
+                        </div>
+                        <div class="film-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift"
+                            data-film-type="ceramic">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Ceramic (Better)</h3>
+                            <p class="text-sm text-gray-400 mb-4">A solid choice for heat rejection and comfort. High performance without breaking the bank.</p>
+                        </div>
+                        <div class="film-option border-2 border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition duration-300 hover-lift relative"
+                            data-film-type="premium-ceramic">
+                            <div class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded">Premium</div>
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold mb-2">Premium Ceramic IR.X (Best)</h3>
+                            <p class="text-sm text-gray-400 mb-4">Our top-tier film. Maximum heat rejection, crystal clarity, and advanced IR-blocking tech.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(3)"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                            Back</button>
+                        <button onclick="nextStep(5)"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                            Continue</button>
+                    </div>
+                </div>
+
+                <div id="step-contact-info" class="bg-gray-800 p-8 rounded-lg hidden mt-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4">Almost done! Contact details</h2>
+                        <p class="text-gray-300">We'll send your quote and schedule your appointment.</p>
+                    </div>
+                    <form class="space-y-6 max-w-lg mx-auto" onsubmit="handleFinalSubmit(event)">
+                        <div id="success-message" class="hidden bg-green-600 text-white p-3 rounded-lg text-center mb-4">
+                            Thanks! We'll reach out within the next 5-10 minutes.
+                        </div>
+                        <div>
+                            <label for="full-name" class="block text-sm font-medium mb-2">Full Name *</label>
+                            <input type="text" id="full-name" name="full-name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white">
+                        </div>
+                        
+                        <div id="auto-glass-fields" class="hidden">
+                            <div>
+                                <label for="notes" class="block text-sm font-medium mb-2">Anything else we should know?</label>
+                                <div class="relative">
+                                    <textarea id="notes" name="notes" rows="3" placeholder="Please include your VIN number (enter it here or use the upload icon)." class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white resize-none pr-12"></textarea>
+                                    <label for="vin-upload" class="absolute top-3 right-3 cursor-pointer text-gray-400 hover:text-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                        </svg>
+                                    </label>
+                                    <input type="file" id="vin-upload" name="vin-upload" accept=".jpg,.jpeg,.png,.heic" class="hidden" onchange="handleVinUpload(event)">
+                                </div>
+                                <div id="vin-upload-status" class="mt-2 text-sm text-gray-400 hidden"></div>
+                            </div>
+                            <div class="relative">
+                                <div class="vin-help text-right">
+                                    <span class="text-sm text-gray-400 cursor-help">Don't know where your VIN is?</span>
+                                    <div class="vin-tooltip">
+                                        <img src="/placeholder.svg?height=100&width=200" alt="VIN locations" class="w-48 h-24 object-cover rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="window-tint-fields" class="hidden">
+                            <div>
+                                <label for="tint-notes" class="block text-sm font-medium mb-2">Anything else we should know?</label>
+                                <textarea id="tint-notes" name="tint-notes" rows="3" placeholder="Any specific requirements or questions about your tint job?" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <button type="button" onclick="goBackFromContact()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover-lift">
+                                Back
+                            </button>
+                            <button type="submit" id="submit-btn" class="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-lg transition duration-300 hover-lift">
+                                Submit My Quote
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 ">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-100">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-300"><a href="tel:+15551234567" class="hover:text-primary">(555)
+                                            123-4567</a></p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-300"><a href="mailto:info@tintpro.com"
+                                            class="hover:text-primary">info@tintpro.com</a></p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Address</h4>
+                                    <p class="text-gray-300">123 Main Street<br>City, ST 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-200">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Business Hours</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between"><span class="font-medium">Monday - Friday</span><span
+                                    class="text-gray-300">8:00 AM - 6:00 PM</span></div>
+                            <div class="flex justify-between"><span class="font-medium">Saturday</span><span
+                                    class="text-gray-300">9:00 AM - 4:00 PM</span></div>
+                            <div class="flex justify-between"><span class="font-medium">Sunday</span><span
+                                    class="text-gray-300">Closed</span></div>
+                        </div>
+                        <div class="mt-6 p-4 bg-primary bg-opacity-20 rounded-lg">
+                            <p class="text-sm text-gray-300"><strong class="text-primary">Emergency Service:</strong>
+                                Available 24/7 for urgent windshield replacements</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 p-8 rounded-lg fade-in-up delay-300">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="w-12 h-12 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition duration-300 hover-lift">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-12 h-12 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition duration-300 hover-lift">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-800 py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="fade-in-up">
+                        <img style="width: 120px;" class="mb-4 image-loading" src="./images/logo.png" alt="">
+                        <p class="text-gray-400">Your trusted partner for professional window tinting and auto glass
+                            services.</p>
+                    </div>
+                    <div class="fade-in-up delay-100">
+                        <h4 class="text-lg font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="services.html" class="hover:text-primary">Window Tinting</a></li>
+                            <li><a href="services.html" class="hover:text-primary">Windshield Replacement</a></li>
+                            <li><a href="services.html" class="hover:text-primary">Chip Repair</a></li>
+                            <li><a href="services.html" class="hover:text-primary">Mobile Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="fade-in-up delay-200">
+                        <h4 class="text-lg font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                            <li><a href="gallery.html" class="hover:text-primary">Gallery</a></li>
+                            <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="fade-in-up delay-300">
+                        <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>(555) 123-4567</li>
+                            <li>info@tintpro.com</li>
+                            <li>123 Main St, City, ST 12345</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 fade-in-up">
+                    <p>&copy; 2024 GLASS <span class="text-primary font-semibold">& TINT</span>. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="data-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" onclick="closeModal()">&times;</button>
+            <h2 class="text-3xl font-bold mb-6 text-primary">Quote Request Summary</h2>
+            <div id="modal-data-display" class="space-y-4 text-gray-200">
+                 Data will be injected here by JavaScript 
+            </div>
+            <div class="mt-8 flex justify-center gap-4">
+                <button onclick="sendToCRM()"
+                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                    Send</button>
+                <button onclick="closeModal()"
+                    class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 hover-lift">
+                    Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let formData = {}; // Stores all collected form data
+        let selectedServiceType = ''; // 'auto-glass' or 'window-tint'
+        let selectedGlassType = '';
+        let selectedTintType = '';
+        let selectedFilmType = '';
+        let selectedGlassDetails = {};
+        let selectedTintDetails = {};
+
+        // Data for dynamic dropdowns
+        const carData = {
+            "BMW": ["X6", "X5", "3 Series", "5 Series"],
+            "Mercedes-Benz": ["C-Class", "E-Class", "GLC", "GLE"],
+            "Audi": ["A3", "A4", "Q5", "Q7"],
+            "Toyota": ["Camry", "Corolla", "RAV4", "Highlander", "Tacoma"],
+            "Honda": ["Civic", "Accord", "CR-V", "Pilot"],
+            "Ford": ["F-150", "Explorer", "Mustang", "Escape"],
+            "Chevrolet": ["Silverado", "Equinox", "Malibu", "Tahoe"],
+            "Nissan": ["Altima", "Rogue", "Titan", "Sentra"],
+            "Hyundai": ["Elantra", "Tucson", "Santa Fe", "Sonata"],
+            "Kia": ["Forte", "Sportage", "Sorento", "Telluride"]
+        };
+
+        const styleData = {
+            "X6": ["4 door utility", "2 door coupe"],
+            "X5": ["4 door utility"],
+            "3 Series": ["4 door sedan", "2 door coupe"],
+            "5 Series": ["4 door sedan"],
+            "C-Class": ["4 door sedan", "2 door coupe"],
+            "E-Class": ["4 door sedan", "2 door coupe"],
+            "GLC": ["4 door utility"],
+            "GLE": ["4 door utility"],
+            "A3": ["4 door sedan", "5 door hatchback"],
+            "A4": ["4 door sedan"],
+            "Q5": ["4 door utility"],
+            "Q7": ["4 door utility"],
+            "Camry": ["4 door sedan"],
+            "Corolla": ["4 door sedan", "5 door hatchback"],
+            "RAV4": ["4 door utility"],
+            "Highlander": ["4 door utility"],
+            "Tacoma": ["2 door pickup", "4 door pickup"],
+            "Civic": ["4 door sedan", "2 door coupe", "5 door hatchback"],
+            "Accord": ["4 door sedan"],
+            "CR-V": ["4 door utility"],
+            "Pilot": ["4 door utility"],
+            "F-150": ["2 door pickup", "4 door pickup"],
+            "Explorer": ["4 door utility"],
+            "Mustang": ["2 door coupe", "2 door convertible"],
+            "Escape": ["4 door utility"],
+            "Silverado": ["2 door pickup", "4 door pickup"],
+            "Equinox": ["4 door utility"],
+            "Malibu": ["4 door sedan"],
+            "Tahoe": ["4 door utility"],
+            "Altima": ["4 door sedan"],
+            "Rogue": ["4 door utility"],
+            "Titan": ["2 door pickup", "4 door pickup"],
+            "Sentra": ["4 door sedan"],
+            "Elantra": ["4 door sedan", "5 door hatchback"],
+            "Tucson": ["4 door utility"],
+            "Santa Fe": ["4 door utility"],
+            "Sonata": ["4 door sedan"],
+            "Forte": ["4 door sedan", "5 door hatchback"],
+            "Sportage": ["4 door utility"],
+            "Sorento": ["4 door utility"],
+            "Telluride": ["4 door utility"]
+        };
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function getStepElement(stepNum) {
+            switch (stepNum) {
+                case 1: return document.getElementById('step-service-type');
+                case 2: return document.getElementById('step-vehicle-info');
+                case 3: 
+                    if (selectedServiceType === 'auto-glass') {
+                        return document.getElementById('step-glass-selection');
+                    } else {
+                        return document.getElementById('step-tint-selection');
+                    }
+                case 4: 
+                    if (selectedServiceType === 'window-tint') {
+                        return document.getElementById('step-film-selection');
+                    } else {
+                        return document.getElementById('step-contact-info');
+                    }
+                case 5: return document.getElementById('step-contact-info');
+                default: return null;
+            }
+        }
+
+        function nextStep(step) {
+            if (!validateStep(currentStep)) {
+                return;
+            }
+
+            const currentStepElement = getStepElement(currentStep);
+            const nextStepElement = getStepElement(step);
+
+            if (currentStepElement) {
+                currentStepElement.classList.add('hidden');
+            }
+            if (nextStepElement) {
+                nextStepElement.classList.remove('hidden');
+                nextStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            updateProgress(currentStep, step);
+            currentStep = step;
+
+            // Show appropriate fields in contact form
+            if (step === 4 || step === 5) {
+                showContactFields();
+            }
+        }
+
+        function prevStep(step) {
+            const currentStepElement = getStepElement(currentStep);
+            const prevStepElement = getStepElement(step);
+
+            if (currentStepElement) {
+                currentStepElement.classList.add('hidden');
+            }
+            if (prevStepElement) {
+                prevStepElement.classList.remove('hidden');
+                prevStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            updateProgress(currentStep, step);
+            currentStep = step;
+        }
+
+        function goBackFromContact() {
+            if (selectedServiceType === 'window-tint') {
+                prevStep(4); // Go back to film selection
+            } else {
+                prevStep(3); // Go back to glass selection
+            }
+        }
+
+        function updateProgress(from, to) {
+            // Update step indicators
+            for (let i = 1; i <= 5; i++) {
+                const indicator = document.getElementById(`step-indicator-${i}`);
+                if (i <= to) {
+                    indicator.classList.remove('bg-gray-600');
+                    indicator.classList.add('bg-primary');
+                } else {
+                    indicator.classList.remove('bg-primary');
+                    indicator.classList.add('bg-gray-600');
+                }
+            }
+
+            // Update progress bars
+            for (let i = 1; i <= 4; i++) {
+                const progressBar = document.getElementById(`progress-${i}`);
+                if (i < to) {
+                    progressBar.classList.remove('bg-gray-600');
+                    progressBar.classList.add('bg-primary');
+                } else {
+                    progressBar.classList.remove('bg-primary');
+                    progressBar.classList.add('bg-gray-600');
+                }
+            }
+        }
+
+        function validateStep(step) {
+            switch (step) {
+                case 1: // Service Type Selection
+                    const selectedType = document.querySelector('.service-type-option.selected');
+                    if (!selectedType) {
+                        alert('Please select a service type.');
+                        return false;
+                    }
+                    selectedServiceType = selectedType.dataset.serviceType;
+                    formData.service = selectedServiceType;
+                    return true;
+
+                case 2: // Vehicle Information
+                    const year = document.getElementById('vehicle-year').value;
+                    const make = document.getElementById('vehicle-make').value;
+                    const model = document.getElementById('vehicle-model').value;
+                    const style = document.getElementById('vehicle-style').value;
+
+                    if (!year || !make || !model || !style) {
+                        alert('Please fill in all vehicle information fields.');
+                        return false;
+                    }
+                    formData.vehicle = { year, make, model, style };
+                    return true;
+
+                case 3: // Glass or Tint Selection
+                    if (selectedServiceType === 'auto-glass') {
+                        return validateGlassSelection();
+                    } else {
+                        return validateTintSelection();
+                    }
+
+                case 4: // Film Selection (tint) or Contact Info (glass)
+                    if (selectedServiceType === 'window-tint') {
+                        const selectedFilm = document.querySelector('.film-option.selected');
+                        if (!selectedFilm) {
+                            alert('Please select a film package.');
+                            return false;
+                        }
+                        selectedFilmType = selectedFilm.dataset.filmType;
+                        formData.filmPackage = selectedFilmType;
+                        return true;
+                    } else {
+                        return validateContactInfo();
+                    }
+
+                case 5: // Contact Info (for tint)
+                    return validateContactInfo();
+
+                default:
+                    return true;
+            }
+        }
+
+        function validateGlassSelection() {
+            if (!selectedGlassType) {
+                alert('Please select a glass type.');
+                return false;
+            }
+            
+            // Validate submenu selections based on glass type
+            if (selectedGlassType === 'windshield') {
+                const windshieldOption = document.querySelector('.windshield-option.selected');
+                if (!windshieldOption) {
+                    alert('Please select windshield service type.');
+                    return false;
+                }
+                selectedGlassDetails.windshieldType = windshieldOption.dataset.option;
+            } else if (selectedGlassType === 'driver-side' || selectedGlassType === 'passenger-side') {
+                const sideOption = document.querySelector('.side-glass-option.selected');
+                if (!sideOption) {
+                    alert('Please select which glass needs service.');
+                    return false;
+                }
+                selectedGlassDetails.glassLocation = sideOption.dataset.option;
+                
+                // Check if front/back door requires additional selection
+                if (sideOption.dataset.option === 'front-door' || sideOption.dataset.option === 'back-door') {
+                    const problemType = document.querySelector('.problem-type.selected');
+                    if (!problemType) {
+                        alert('Please select what\'s wrong with your window.');
+                        return false;
+                    }
+                    selectedGlassDetails.problemType = problemType.dataset.problem;
+                }
+            }
+            
+            formData.glassSelection = {
+                type: selectedGlassType,
+                details: selectedGlassDetails
+            };
+            return true;
+        }
+
+        function validateTintSelection() {
+            if (!selectedTintType) {
+                alert('Please select a tint package.');
+                return false;
+            }
+
+            // Validate submenu selections based on tint type
+            if (selectedTintType === 'windshield-only') {
+                const visorStrip = document.querySelector('.visor-strip-option.selected');
+                if (visorStrip) {
+                    selectedTintDetails.visorStrip = visorStrip.dataset.option;
+                }
+            } else if (selectedTintType === 'whole-car') {
+                const sunroof = document.querySelector('.sunroof-option.selected');
+                if (sunroof) {
+                    selectedTintDetails.sunroof = sunroof.dataset.option;
+                }
+            }
+
+            formData.tintSelection = {
+                type: selectedTintType,
+                details: selectedTintDetails
+            };
+            return true;
+        }
+
+        function validateContactInfo() {
+            const name = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !email || !phone) {
+                alert('Please fill in all required contact fields.');
+                return false;
+            }
+            
+            const contactData = {
+                full_name: name,
+                email: email,
+                phone: phone
+            };
+
+            if (selectedServiceType === 'auto-glass') {
+                contactData.notes = document.getElementById('notes').value || '';
+                contactData.vin_image_url = formData.vinImageUrl || null;
+            } else {
+                contactData.notes = document.getElementById('tint-notes').value || '';
+            }
+
+            formData.contact = contactData;
+            return true;
+        }
+
+        function showContactFields() {
+            const autoGlassFields = document.getElementById('auto-glass-fields');
+            const windowTintFields = document.getElementById('window-tint-fields');
+
+            if (selectedServiceType === 'auto-glass') {
+                autoGlassFields.classList.remove('hidden');
+                windowTintFields.classList.add('hidden');
+            } else {
+                autoGlassFields.classList.add('hidden');
+                windowTintFields.classList.remove('hidden');
+            }
+        }
+
+        function handleFinalSubmit(event) {
+            event.preventDefault();
+            
+            if (!validateStep(currentStep)) {
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            // Prepare data for GHL
+            const ghlData = {
+                service: selectedServiceType === 'auto-glass' ? 'Auto Glass' : 'Window Tint',
+                vehicle: formData.vehicle,
+                contact: formData.contact,
+                source: "Website - Quote Funnel",
+                tags: [selectedServiceType === 'auto-glass' ? 'Auto Glass' : 'Window Tint', 'Website Lead']
+            };
+
+            if (selectedServiceType === 'auto-glass') {
+                ghlData.selection = formData.glassSelection;
+            } else {
+                ghlData.selectedWindows = formData.tintSelection;
+                ghlData.filmPackage = formData.filmPackage;
+            }
+
+            // Simulate API call
+            setTimeout(() => {
+                console.log('Form data to send to GHL:', ghlData);
+                displayDataInModal(ghlData);
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
+        function populateModels() {
+            const makeSelect = document.getElementById('vehicle-make');
+            const modelSelect = document.getElementById('vehicle-model');
+            const styleSelect = document.getElementById('vehicle-style');
+            const selectedMake = makeSelect.value;
+
+            modelSelect.innerHTML = '<option value="">Select model</option>';
+            styleSelect.innerHTML = '<option value="">Select style</option>';
+
+            if (selectedMake && carData[selectedMake]) {
+                carData[selectedMake].forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+            }
+        }
+
+        function populateStyles() {
+            const modelSelect = document.getElementById('vehicle-model');
+            const styleSelect = document.getElementById('vehicle-style');
+            const selectedModel = modelSelect.value;
+
+            styleSelect.innerHTML = '<option value="">Select style</option>';
+
+            if (selectedModel && styleData[selectedModel]) {
+                styleData[selectedModel].forEach(style => {
+                    const option = document.createElement('option');
+                    option.value = style;
+                    option.textContent = style;
+                    styleSelect.appendChild(option);
+                });
+            }
+        }
+
+        function showGlassSubmenu(glassType) {
+            const submenu = document.getElementById('glass-submenu');
+            submenu.innerHTML = '';
+            submenu.classList.remove('hidden');
+
+            if (glassType === 'windshield') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Windshield Service</h3>
+                    <div class="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        <div class="windshield-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="replace">
+                            <h4 class="font-bold mb-2">Replace</h4>
+                            <p class="text-sm text-gray-400">It's cracked or too damaged</p>
+                            <p class="text-xs text-primary mt-1">No worries we got you.</p>
+                        </div>
+                        <div class="windshield-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="repair">
+                            <h4 class="font-bold mb-2">Repair</h4>
+                            <p class="text-sm text-gray-400">Just small chips or cracks</p>
+                            <p class="text-xs text-primary mt-1">Looking for a repair? We got you.</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners
+                document.querySelectorAll('.windshield-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.windshield-option').forEach(opt => {
+                            opt.classList.remove('selected', 'border-primary');
+                            opt.classList.add('border-gray-600');
+                        });
+                        this.classList.add('selected', 'border-primary');
+                        this.classList.remove('border-gray-600');
+                    });
+                });
+            } else if (glassType === 'driver-side' || glassType === 'passenger-side') {
+                const sideLabel = glassType === 'driver-side' ? 'Driver Side' : 'Passenger Side';
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">${sideLabel} Glass</h3>
+                    <div class="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-6">
+                        <div class="side-glass-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="front-door">
+                            <h4 class="font-bold">Front Door</h4>
+                        </div>
+                        <div class="side-glass-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="back-door">
+                            <h4 class="font-bold">Back Door</h4>
+                        </div>
+                        <div class="side-glass-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="vent-glass">
+                            <h4 class="font-bold">Vent Glass</h4>
+                        </div>
+                        <div class="side-glass-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="quarter-glass">
+                            <h4 class="font-bold">Quarter Glass</h4>
+                        </div>
+                    </div>
+                    <div id="door-problem-submenu" class="hidden">
+                        <h4 class="text-lg font-bold mb-4 text-center">What's wrong with your window?</h4>
+                        <div class="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                            <div class="problem-type border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-problem="shattered">
+                                <p class="text-sm">The glass is shattered or cracked</p>
+                            </div>
+                            <div class="problem-type border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-problem="mechanism">
+                                <p class="text-sm">The window won't roll up or down properly</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners for side glass options
+                document.querySelectorAll('.side-glass-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.side-glass-option').forEach(opt => {
+                            opt.classList.remove('selected', 'border-primary');
+                            opt.classList.add('border-gray-600');
+                        });
+                        this.classList.add('selected', 'border-primary');
+                        this.classList.remove('border-gray-600');
+                        
+                        // Show door problem submenu for front/back doors
+                        const doorProblemSubmenu = document.getElementById('door-problem-submenu');
+                        if (this.dataset.option === 'front-door' || this.dataset.option === 'back-door') {
+                            doorProblemSubmenu.classList.remove('hidden');
+                        } else {
+                            doorProblemSubmenu.classList.add('hidden');
+                            // Clear any selected problem types
+                            document.querySelectorAll('.problem-type').forEach(prob => {
+                                prob.classList.remove('selected', 'border-primary');
+                                prob.classList.add('border-gray-600');
+                            });
+                        }
+                    });
+                });
+                
+                // Add event listeners for problem types
+                document.querySelectorAll('.problem-type').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.problem-type').forEach(opt => {
+                            opt.classList.remove('selected', 'border-primary');
+                            opt.classList.add('border-gray-600');
+                        });
+                        this.classList.add('selected', 'border-primary');
+                        this.classList.remove('border-gray-600');
+                    });
+                });
+            } else if (glassType === 'back-glass') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Back Glass Selected</h3>
+                    <p class="text-center text-gray-300">We'll provide a quote for your back glass replacement.</p>
+                `;
+            }
+        }
+
+        function showTintSubmenu(tintType) {
+            const submenu = document.getElementById('tint-submenu');
+            submenu.innerHTML = '';
+            submenu.classList.remove('hidden');
+
+            if (tintType === 'windshield-only') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Windshield Tinting</h3>
+                    <p class="text-center text-gray-300 mb-6">Would you like to add a visor strip (sun strip)?</p>
+                    <div class="grid md:grid-cols-2 gap-4 max-w-lg mx-auto">
+                        <div class="visor-strip-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="yes">
+                            <h4 class="font-bold">Yes</h4>
+                            <p class="text-sm text-gray-400">Add visor strip</p>
+                        </div>
+                        <div class="visor-strip-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="no">
+                            <h4 class="font-bold">No</h4>
+                            <p class="text-sm text-gray-400">Windshield only</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.querySelectorAll('.visor-strip-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.visor-strip-option').forEach(opt => {
+                            opt.classList.remove('selected', 'border-primary');
+                            opt.classList.add('border-gray-600');
+                        });
+                        this.classList.add('selected', 'border-primary');
+                        this.classList.remove('border-gray-600');
+                    });
+                });
+            } else if (tintType === 'whole-car') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Whole Car Package</h3>
+                    <p class="text-center text-gray-300 mb-4">Includes every window in your car - front, back, and windshield with your choice of shade.</p>
+                    <p class="text-center text-gray-300 mb-6">Does your vehicle have a sunroof?</p>
+                    <div class="grid md:grid-cols-2 gap-4 max-w-lg mx-auto">
+                        <div class="sunroof-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="yes">
+                            <h4 class="font-bold">Yes</h4>
+                            <p class="text-sm text-gray-400">Has sunroof</p>
+                        </div>
+                        <div class="sunroof-option border-2 border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:border-primary transition duration-300" data-option="no">
+                            <h4 class="font-bold">No</h4>
+                            <p class="text-sm text-gray-400">No sunroof</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.querySelectorAll('.sunroof-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.sunroof-option').forEach(opt => {
+                            opt.classList.remove('selected', 'border-primary');
+                            opt.classList.add('border-gray-600');
+                        });
+                        this.classList.add('selected', 'border-primary');
+                        this.classList.remove('border-gray-600');
+                    });
+                });
+            } else if (tintType === 'two-front') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Two Front Windows</h3>
+                    <div class="bg-yellow-600 bg-opacity-20 border border-yellow-600 rounded-lg p-4 text-center">
+                        <p class="text-yellow-300 font-semibold">California Law Notice</p>
+                        <p class="text-sm text-gray-300 mt-2">California law says front windows must be 70% VLT. We'll tint whatever you want - just giving you a heads-up!</p>
+                    </div>
+                `;
+            } else if (tintType === 'rear-only') {
+                submenu.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4 text-center">Rear Windows Only</h3>
+                    <p class="text-center text-gray-300">Covers rear doors, rear quarters (if applicable), and the back glass - full rear tint coverage.</p>
+                `;
+            }
+        }
+
+        function handleVinUpload(event) {
+            const file = event.target.files[0];
+            const statusDiv = document.getElementById('vin-upload-status');
+            
+            if (file) {
+                statusDiv.textContent = `Uploaded: ${file.name}`;
+                statusDiv.classList.remove('hidden');
+                statusDiv.classList.add('text-green-400');
+                
+                // In a real app, you would upload the file to your server here
+                // For now, we'll just simulate storing the file reference
+                formData.vinImageUrl = `uploaded/${file.name}`;
+            }
+        }
+
+        function displayDataInModal(data) {
+            const modalDisplay = document.getElementById('modal-data-display');
+            modalDisplay.innerHTML = '';
+            let htmlContent = '';
+
+            if (data.service) {
+                htmlContent += `<p><strong class="text-primary">Service Type:</strong> ${data.service}</p>`;
+            }
+
+            if (data.vehicle) {
+                htmlContent += `<p><strong class="text-primary">Vehicle:</strong> ${data.vehicle.year} ${data.vehicle.make} ${data.vehicle.model} (${data.vehicle.style})</p>`;
+            }
+
+            if (data.selection) {
+                htmlContent += `<p><strong class="text-primary">Glass Selection:</strong> ${data.selection.type.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
+                if (data.selection.details) {
+                    Object.keys(data.selection.details).forEach(key => {
+                        htmlContent += `<p><strong class="text-primary">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> ${data.selection.details[key].replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
+                    });
+                }
+            }
+
+            if (data.selectedWindows) {
+                htmlContent += `<p><strong class="text-primary">Tint Package:</strong> ${data.selectedWindows.type.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
+                if (data.selectedWindows.details) {
+                    Object.keys(data.selectedWindows.details).forEach(key => {
+                        htmlContent += `<p><strong class="text-primary">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> ${data.selectedWindows.details[key].replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
+                    });
+                }
+            }
+
+            if (data.filmPackage) {
+                htmlContent += `<p><strong class="text-primary">Film Package:</strong> ${data.filmPackage.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</p>`;
+            }
+
+            if (data.contact) {
+                htmlContent += `<h3 class="text-xl font-semibold mt-6 mb-2 text-primary">Contact Details:</h3>`;
+                htmlContent += `<p><strong class="text-primary">Name:</strong> ${data.contact.full_name}</p>`;
+                htmlContent += `<p><strong class="text-primary">Email:</strong> ${data.contact.email}</p>`;
+                htmlContent += `<p><strong class="text-primary">Phone:</strong> ${data.contact.phone}</p>`;
+                if (data.contact.notes) {
+                    htmlContent += `<p><strong class="text-primary">Notes:</strong> ${data.contact.notes}</p>`;
+                }
+            }
+
+            modalDisplay.innerHTML = htmlContent;
+            document.getElementById('data-modal-overlay').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('data-modal-overlay').classList.remove('show');
+        }
+
+        function sendToCRM() {
+            console.log('Sending data to CRM...');
+            closeModal();
+            
+            // Show success message
+            document.getElementById('success-message').classList.remove('hidden');
+            
+            // Hide form
+            document.querySelector('form').style.display = 'none';
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Image loading animations
+        function initImageLoading() {
+            const images = document.querySelectorAll('.image-loading');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('image-loaded');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.add('image-loaded');
+                    });
+                }
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            initScrollAnimations();
+            initImageLoading();
+
+            // Service type selection listeners
+            document.querySelectorAll('.service-type-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.service-type-option').forEach(opt => {
+                        opt.classList.remove('selected', 'border-primary');
+                        opt.classList.add('border-gray-600');
+                    });
+                    this.classList.add('selected', 'border-primary');
+                    this.classList.remove('border-gray-600');
+                });
+            });
+
+            // Glass main option listeners
+            document.querySelectorAll('.glass-main-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.glass-main-option').forEach(opt => {
+                        opt.classList.remove('selected', 'border-primary');
+                        opt.classList.add('border-gray-600');
+                    });
+                    this.classList.add('selected', 'border-primary');
+                    this.classList.remove('border-gray-600');
+                    
+                    selectedGlassType = this.dataset.glassType;
+                    selectedGlassDetails = {}; // Reset details
+                    showGlassSubmenu(selectedGlassType);
+                });
+            });
+
+            // Tint main option listeners
+            document.querySelectorAll('.tint-main-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.tint-main-option').forEach(opt => {
+                        opt.classList.remove('selected', 'border-primary');
+                        opt.classList.add('border-gray-600');
+                    });
+                    this.classList.add('selected', 'border-primary');
+                    this.classList.remove('border-gray-600');
+                    
+                    selectedTintType = this.dataset.tintType;
+                    selectedTintDetails = {}; // Reset details
+                    showTintSubmenu(selectedTintType);
+                });
+            });
+
+            // Film option listeners
+            document.querySelectorAll('.film-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.film-option').forEach(opt => {
+                        opt.classList.remove('selected', 'border-primary');
+                        opt.classList.add('border-gray-600');
+                    });
+                    this.classList.add('selected', 'border-primary');
+                    this.classList.remove('border-gray-600');
+                });
+            });
+
+            // Ensure only the first step is visible on load
+            document.getElementById('step-service-type').classList.remove('hidden');
+            document.getElementById('step-vehicle-info').classList.add('hidden');
+            document.getElementById('step-glass-selection').classList.add('hidden');
+            document.getElementById('step-tint-selection').classList.add('hidden');
+            document.getElementById('step-film-selection').classList.add('hidden');
+            document.getElementById('step-contact-info').classList.add('hidden');
+        });
+    </script>
 </body>
 </html>
